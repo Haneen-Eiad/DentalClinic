@@ -12,3 +12,4 @@ C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\Dental
 C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\obj\Debug\net9.0\DentalClinic.ADL.pdb
 C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\obj\Debug\net9.0\DentalClinic.ADL.genruntimeconfig.cache
 C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\obj\Debug\net9.0\ref\DentalClinic.ADL.dll
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\obj\Debug\net9.0\DentalClinic.ADL.sourcelink.json

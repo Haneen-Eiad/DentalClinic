@@ -2,6 +2,7 @@
 using DentalClinic.ADL.Data;
 using DentalClinic.ADL.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DentalClinic.PL
 {
@@ -17,7 +18,12 @@ namespace DentalClinic.PL
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
             builder.Services.AddEndpointsApiExplorer();
-           
+
+            //Add service for Dbcontext
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+              options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
             //swagger
             builder.Services.AddSwaggerGen();
 

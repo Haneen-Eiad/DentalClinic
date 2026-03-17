@@ -1,0 +1,16 @@
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\bin\Debug\net9.0\DentalClinic.BLL.deps.json
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\bin\Debug\net9.0\DentalClinic.BLL.dll
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\bin\Debug\net9.0\DentalClinic.BLL.pdb
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\bin\Debug\net9.0\DentalClinic.ADL.dll
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\bin\Debug\net9.0\DentalClinic.ADL.pdb
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\obj\Debug\net9.0\DentalClinic.BLL.csproj.AssemblyReference.cache
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\obj\Debug\net9.0\DentalClinic.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\obj\Debug\net9.0\DentalClinic.BLL.AssemblyInfoInputs.cache
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\obj\Debug\net9.0\DentalClinic.BLL.AssemblyInfo.cs
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\obj\Debug\net9.0\DentalClinic.BLL.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\obj\Debug\net9.0\DentalClinic.BLL.sourcelink.json
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\obj\Debug\net9.0\DentalCl.7C278448.Up2Date
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\obj\Debug\net9.0\DentalClinic.BLL.dll
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\obj\Debug\net9.0\refint\DentalClinic.BLL.dll
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\obj\Debug\net9.0\DentalClinic.BLL.pdb
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.BLL\obj\Debug\net9.0\ref\DentalClinic.BLL.dll
