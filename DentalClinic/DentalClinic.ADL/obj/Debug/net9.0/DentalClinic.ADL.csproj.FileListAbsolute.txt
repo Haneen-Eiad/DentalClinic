@@ -1,0 +1,14 @@
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\bin\Debug\net9.0\DentalClinic.ADL.deps.json
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\bin\Debug\net9.0\DentalClinic.ADL.runtimeconfig.json
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\bin\Debug\net9.0\DentalClinic.ADL.dll
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\bin\Debug\net9.0\DentalClinic.ADL.pdb
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\obj\Debug\net9.0\DentalClinic.ADL.csproj.AssemblyReference.cache
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\obj\Debug\net9.0\DentalClinic.ADL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\obj\Debug\net9.0\DentalClinic.ADL.AssemblyInfoInputs.cache
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\obj\Debug\net9.0\DentalClinic.ADL.AssemblyInfo.cs
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\obj\Debug\net9.0\DentalClinic.ADL.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\obj\Debug\net9.0\DentalClinic.ADL.dll
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\obj\Debug\net9.0\refint\DentalClinic.ADL.dll
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\obj\Debug\net9.0\DentalClinic.ADL.pdb
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\obj\Debug\net9.0\DentalClinic.ADL.genruntimeconfig.cache
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.ADL\obj\Debug\net9.0\ref\DentalClinic.ADL.dll
