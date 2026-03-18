@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "ContainingType": "DentalClinic.PL.Controllers.ValuesController",
+    "Method": "GetResult",
+    "RelativePath": "api/Values",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

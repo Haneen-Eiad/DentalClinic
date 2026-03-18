@@ -15,6 +15,11 @@
         },
         "runtime": {
           "DentalClinic.PL.dll": {}
+        },
+        "resources": {
+          "ar/DentalClinic.PL.resources.dll": {
+            "locale": "ar"
+          }
         }
       },
       "Azure.Core/1.38.0": {

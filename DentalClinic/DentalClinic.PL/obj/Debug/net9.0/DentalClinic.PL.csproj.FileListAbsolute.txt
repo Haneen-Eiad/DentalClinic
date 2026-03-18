@@ -174,3 +174,8 @@ C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\Dental
 C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.PL\obj\Debug\net9.0\DentalClinic.PL.pdb
 C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.PL\obj\Debug\net9.0\DentalClinic.PL.genruntimeconfig.cache
 C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.PL\obj\Debug\net9.0\ref\DentalClinic.PL.dll
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.PL\bin\Debug\net9.0\ar\DentalClinic.PL.resources.dll
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.PL\obj\Debug\net9.0\DentalClinic.PL.Resources.SharedResource.resources
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.PL\obj\Debug\net9.0\DentalClinic.PL.Resources.SharedResource.ar.resources
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.PL\obj\Debug\net9.0\DentalClinic.PL.csproj.GenerateResource.cache
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.PL\obj\Debug\net9.0\ar\DentalClinic.PL.resources.dll

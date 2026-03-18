@@ -10,7 +10,7 @@ namespace DentalClinic.ADL.Models
     public class Medicine : BaseModel
     {
         public string MedicineName { get; set; }
-        public decimal Price { get; set; }
+        public decimal MedicinePrice { get; set; }
 
         //relation with SupplierMedicines
         public string SupplierId { get; set; } 

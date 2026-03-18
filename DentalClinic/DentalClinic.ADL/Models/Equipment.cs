@@ -8,7 +8,7 @@ namespace DentalClinic.ADL.Models
 {
     public class Equipment : BaseModel
     {
-        public string Name { get; set; }
+        public string EquipmentName { get; set; }
 
         public string EquipmentCategoriesId { get; set; }
         public EquipmentCategories equipmentCategories { get; set; }

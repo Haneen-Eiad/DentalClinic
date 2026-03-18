@@ -9,7 +9,7 @@ namespace DentalClinic.ADL.Models
     public class Supplier : BaseModel
     {
         public string? CompanyName { get; set; }
-        public string? SupplierName { get; set; }
+        public string? sellerName { get; set; }
         public string? SupplierDescription { get; set; }
 
         //relation between user  to use phone number and email 

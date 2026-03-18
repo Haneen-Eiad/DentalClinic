@@ -8,7 +8,7 @@ namespace DentalClinic.ADL.Models
 {
     public class PatientTreatment :  BaseModel
     {
-        public string? Note { get; set; }
+        public string? PatientTreatmentNote { get; set; }
         //relation with Treatment
         public string? TreatmentId { get; set; }
         public Treatment? Treatment { get; set; }

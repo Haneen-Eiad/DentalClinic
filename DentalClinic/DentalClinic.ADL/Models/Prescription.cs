@@ -8,7 +8,7 @@ namespace DentalClinic.ADL.Models
 {
     public class Prescription : BaseModel
     {
-        public string Note { get; set; }
+        public string PrescriptionNote { get; set; }
 
         //relation with Appointment
         public string AppointmentId { get; set; }

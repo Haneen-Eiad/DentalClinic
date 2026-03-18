@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DentalClinic.ADL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260317232151_changeIdentityTablesNames")]
-    partial class changeIdentityTablesNames
+    [Migration("20260319085934_ReinitializeAll-Migrations-With-New-Changed")]
+    partial class ReinitializeAllMigrationsWithNewChanged
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -155,7 +155,7 @@ namespace DentalClinic.ADL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("EquipmentName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -235,7 +235,7 @@ namespace DentalClinic.ADL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("MedicinePrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("StockQuantity")
@@ -308,11 +308,11 @@ namespace DentalClinic.ADL.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PatientId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("PatientTreatmentNote")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TreatmentId")
                         .HasColumnType("nvarchar(450)");
@@ -383,13 +383,13 @@ namespace DentalClinic.ADL.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Note")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PatientId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("PrescriptionNote")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -457,10 +457,10 @@ namespace DentalClinic.ADL.Migrations
                     b.Property<string>("SupplierDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SupplierName")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("sellerName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
