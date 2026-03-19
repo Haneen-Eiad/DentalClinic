@@ -19,7 +19,7 @@ namespace DentalClinic.ADL.Models
       
 
 
-        public string? AppointmentNotes { get; set; }
+       public List<AppointmentTranslation> appointmentTranslations { get; set; }
         public DateTime? AppointmentTime { get; set; }
         public AppointmentStatusEnum AppointmentStatus { get; set; }
         public DateTime? ArrivalTime { get; set; }
@@ -36,6 +36,7 @@ namespace DentalClinic.ADL.Models
 
         //relation with payment ...should i keep it ? 
        public List<Payment>? payments { get; set; }
+
        
          
          

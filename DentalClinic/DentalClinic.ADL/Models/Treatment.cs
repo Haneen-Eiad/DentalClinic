@@ -8,8 +8,7 @@ namespace DentalClinic.ADL.Models
 {
     public class Treatment : BaseModel
     {
-        public string? TreatmentName { get; set; }
-        public string? TreatmentDescription { get; set; }
+        public List<TreatmentTranslation> treatmentTranslations {  get; set; }
         public decimal TreatmentPrice { get; set; }
     }
 }

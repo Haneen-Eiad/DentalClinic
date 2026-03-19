@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DentalClinic.ADL.Migrations
 {
     /// <inheritdoc />
-    public partial class ReinitializeAllMigrationsWithNewChanged : Migration
+    public partial class MakenewChangesandaddtranslationModels : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -60,8 +60,6 @@ namespace DentalClinic.ADL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    TreatmentName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TreatmentDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TreatmentPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -137,6 +135,27 @@ namespace DentalClinic.ADL.Migrations
                         name: "FK_RoleClaim_Role_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Role",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TreatmentTranslations",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    TreatmentName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TreatmentDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Language = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TreatmentId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TreatmentTranslations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TreatmentTranslations_Treatment_TreatmentId",
+                        column: x => x.TreatmentId,
+                        principalTable: "Treatment",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -281,7 +300,6 @@ namespace DentalClinic.ADL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    AppointmentNotes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AppointmentTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     AppointmentStatus = table.Column<int>(type: "int", nullable: false),
                     ArrivalTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -326,6 +344,26 @@ namespace DentalClinic.ADL.Migrations
                         name: "FK_Medicine_Supplier_SupplierId",
                         column: x => x.SupplierId,
                         principalTable: "Supplier",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppointmentTranslation",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AppointmentNotes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Language = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AppointmentId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppointmentTranslation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AppointmentTranslation_Appointment_AppointmentId",
+                        column: x => x.AppointmentId,
+                        principalTable: "Appointment",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -463,6 +501,11 @@ namespace DentalClinic.ADL.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AppointmentTranslation_AppointmentId",
+                table: "AppointmentTranslation",
+                column: "AppointmentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Equipment_EquipmentCategoriesId",
                 table: "Equipment",
                 column: "EquipmentCategoriesId");
@@ -545,6 +588,11 @@ namespace DentalClinic.ADL.Migrations
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TreatmentTranslations_TreatmentId",
+                table: "TreatmentTranslations",
+                column: "TreatmentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserClaim_UserId",
                 table: "UserClaim",
                 column: "UserId");
@@ -576,6 +624,9 @@ namespace DentalClinic.ADL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AppointmentTranslation");
+
+            migrationBuilder.DropTable(
                 name: "Equipment");
 
             migrationBuilder.DropTable(
@@ -594,6 +645,9 @@ namespace DentalClinic.ADL.Migrations
                 name: "RoleClaim");
 
             migrationBuilder.DropTable(
+                name: "TreatmentTranslations");
+
+            migrationBuilder.DropTable(
                 name: "UserClaim");
 
             migrationBuilder.DropTable(
@@ -609,13 +663,13 @@ namespace DentalClinic.ADL.Migrations
                 name: "EquipmentCategories");
 
             migrationBuilder.DropTable(
-                name: "Treatment");
-
-            migrationBuilder.DropTable(
                 name: "Medicine");
 
             migrationBuilder.DropTable(
                 name: "Prescription");
+
+            migrationBuilder.DropTable(
+                name: "Treatment");
 
             migrationBuilder.DropTable(
                 name: "Role");

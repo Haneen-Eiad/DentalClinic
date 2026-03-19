@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DentalClinic.ADL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260319085934_ReinitializeAll-Migrations-With-New-Changed")]
-    partial class ReinitializeAllMigrationsWithNewChanged
+    [Migration("20260319103038_Make-newChanges-and-add-translationModels")]
+    partial class MakenewChangesandaddtranslationModels
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,9 +107,6 @@ namespace DentalClinic.ADL.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("AppointmentNotes")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("AppointmentStatus")
                         .HasColumnType("int");
 
@@ -141,6 +138,29 @@ namespace DentalClinic.ADL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Appointment");
+                });
+
+            modelBuilder.Entity("DentalClinic.ADL.Models.AppointmentTranslation", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AppointmentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AppointmentNotes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppointmentId");
+
+                    b.ToTable("AppointmentTranslation");
                 });
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Equipment", b =>
@@ -478,18 +498,38 @@ namespace DentalClinic.ADL.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TreatmentDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TreatmentName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("TreatmentPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Treatment");
+                });
+
+            modelBuilder.Entity("DentalClinic.ADL.Models.TreatmentTranslation", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TreatmentDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TreatmentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("TreatmentName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TreatmentId");
+
+                    b.ToTable("TreatmentTranslations");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -640,6 +680,17 @@ namespace DentalClinic.ADL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("DentalClinic.ADL.Models.AppointmentTranslation", b =>
+                {
+                    b.HasOne("DentalClinic.ADL.Models.Appointment", "Appointment")
+                        .WithMany("appointmentTranslations")
+                        .HasForeignKey("AppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Appointment");
+                });
+
             modelBuilder.Entity("DentalClinic.ADL.Models.Equipment", b =>
                 {
                     b.HasOne("DentalClinic.ADL.Models.EquipmentCategories", "equipmentCategories")
@@ -760,6 +811,17 @@ namespace DentalClinic.ADL.Migrations
                     b.Navigation("ApplicationUser");
                 });
 
+            modelBuilder.Entity("DentalClinic.ADL.Models.TreatmentTranslation", b =>
+                {
+                    b.HasOne("DentalClinic.ADL.Models.Treatment", "Treatment")
+                        .WithMany("treatmentTranslations")
+                        .HasForeignKey("TreatmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Treatment");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -813,6 +875,8 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Appointment", b =>
                 {
+                    b.Navigation("appointmentTranslations");
+
                     b.Navigation("payments");
                 });
 
@@ -836,6 +900,11 @@ namespace DentalClinic.ADL.Migrations
                     b.Navigation("medicines");
 
                     b.Navigation("payments");
+                });
+
+            modelBuilder.Entity("DentalClinic.ADL.Models.Treatment", b =>
+                {
+                    b.Navigation("treatmentTranslations");
                 });
 #pragma warning restore 612, 618
         }

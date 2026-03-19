@@ -135,6 +135,24 @@
   <data name="AppointmentNotFound" xml:space="preserve">
     <value>Appointment not found</value>
   </data>
+  <data name="AppointmentStatus-Arrived" xml:space="preserve">
+    <value>Arrived</value>
+  </data>
+  <data name="AppointmentStatus-Cancelled" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="AppointmentStatus-Finished" xml:space="preserve">
+    <value>Finished</value>
+  </data>
+  <data name="AppointmentStatus-InTreatment" xml:space="preserve">
+    <value>InTreatment</value>
+  </data>
+  <data name="AppointmentStatus-Late" xml:space="preserve">
+    <value>Late</value>
+  </data>
+  <data name="AppointmentStatus-Scheduled" xml:space="preserve">
+    <value>Scheduled</value>
+  </data>
   <data name="AppointmentUpdated" xml:space="preserve">
     <value>Appointment updated successfully</value>
   </data>
@@ -170,6 +188,12 @@
   </data>
   <data name="ExpenseUpdated" xml:space="preserve">
     <value>Expense updated successfully</value>
+  </data>
+  <data name="Gender-Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="Gender-Male" xml:space="preserve">
+    <value>Male</value>
   </data>
   <data name="InsufficientAmount" xml:space="preserve">
     <value>Insufficient amount</value>
@@ -264,8 +288,26 @@
   <data name="PaymentFailed" xml:space="preserve">
     <value>Payment failed</value>
   </data>
+  <data name="PaymentMethod-Cash" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="PaymentMethod-Check" xml:space="preserve">
+    <value>Check</value>
+  </data>
+  <data name="PaymentMethod-Visa" xml:space="preserve">
+    <value>Visa</value>
+  </data>
   <data name="PaymentNotFound" xml:space="preserve">
     <value>Payment not found</value>
+  </data>
+  <data name="PaymentStatus-Paid" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="PaymentStatus-Refunded" xml:space="preserve">
+    <value>Refunded</value>
+  </data>
+  <data name="PaymentStatus-UnPaid" xml:space="preserve">
+    <value>UnPaid</value>
   </data>
   <data name="PaymentToSupplierCompleted" xml:space="preserve">
     <value>Supplier payment completed</value>

@@ -135,6 +135,24 @@
   <data name="AppointmentNotFound" xml:space="preserve">
     <value>الموعد غير موجود</value>
   </data>
+  <data name="AppointmentStatus-Arrived" xml:space="preserve">
+    <value>المريض موجود في العيادة</value>
+  </data>
+  <data name="AppointmentStatus-Cancelled" xml:space="preserve">
+    <value>تم اللغاء الموعد</value>
+  </data>
+  <data name="AppointmentStatus-Finished" xml:space="preserve">
+    <value>المريض انتهى من العلاج</value>
+  </data>
+  <data name="AppointmentStatus-InTreatment" xml:space="preserve">
+    <value>المريض يخضع للعلاج</value>
+  </data>
+  <data name="AppointmentStatus-Late" xml:space="preserve">
+    <value>المريض متأخر</value>
+  </data>
+  <data name="AppointmentStatus-Scheduled" xml:space="preserve">
+    <value>تم تحديد الموعد</value>
+  </data>
   <data name="AppointmentUpdated" xml:space="preserve">
     <value>تم تحديث الموعد</value>
   </data>
@@ -170,6 +188,12 @@
   </data>
   <data name="ExpenseUpdated" xml:space="preserve">
     <value>تم تحديث المصروف</value>
+  </data>
+  <data name="Gender-Female" xml:space="preserve">
+    <value>انثى</value>
+  </data>
+  <data name="Gender-Male" xml:space="preserve">
+    <value>ذكر</value>
   </data>
   <data name="InsufficientAmount" xml:space="preserve">
     <value>المبلغ غير كافٍ</value>
@@ -264,8 +288,26 @@
   <data name="PaymentFailed" xml:space="preserve">
     <value>فشلت عملية الدفع</value>
   </data>
+  <data name="PaymentMethod-Cash" xml:space="preserve">
+    <value>نقداً</value>
+  </data>
+  <data name="PaymentMethod-Check" xml:space="preserve">
+    <value>شيك</value>
+  </data>
+  <data name="PaymentMethod-Visa" xml:space="preserve">
+    <value>بطاقة</value>
+  </data>
   <data name="PaymentNotFound" xml:space="preserve">
     <value>عملية الدفع غير موجودة</value>
+  </data>
+  <data name="PaymentStatus-Paid" xml:space="preserve">
+    <value>تم الدفع</value>
+  </data>
+  <data name="PaymentStatus-Refunded" xml:space="preserve">
+    <value>تم اعادة المبلغ</value>
+  </data>
+  <data name="PaymentStatus-UnPaid" xml:space="preserve">
+    <value>غير مدفوع</value>
   </data>
   <data name="PaymentToSupplierCompleted" xml:space="preserve">
     <value>تم الدفع للمورد</value>

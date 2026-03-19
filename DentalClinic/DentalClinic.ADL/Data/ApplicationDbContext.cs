@@ -24,6 +24,8 @@ namespace DentalClinic.ADL.Data
         public DbSet<Prescription> Prescription { get; set; }
         public DbSet<Supplier> Supplier { get; set; }
         public DbSet<Treatment> Treatment { get; set; }
+        public DbSet<AppointmentTranslation> AppointmentTranslation { get; set; }
+        public DbSet<TreatmentTranslation> TreatmentTranslations { get; set; }
 
 
         
