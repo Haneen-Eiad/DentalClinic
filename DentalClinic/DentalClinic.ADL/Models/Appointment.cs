@@ -19,7 +19,7 @@ namespace DentalClinic.ADL.Models
       
 
 
-       public List<AppointmentTranslation> appointmentTranslations { get; set; }
+       public List<AppointmentTranslation> appointmentTranslations { get; set; } 
         public DateTime? AppointmentTime { get; set; }
         public AppointmentStatusEnum AppointmentStatus { get; set; }
         public DateTime? ArrivalTime { get; set; }
