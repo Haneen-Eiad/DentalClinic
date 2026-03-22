@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using DentalClinic.ADL.Models;
+using DentalClinic.ADL.Utilities;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace DentalClinic.PL
 {
@@ -8,6 +10,10 @@ namespace DentalClinic.PL
         {
             services.AddExceptionHandler<GlobalExcpetionHandler>();
             services.AddProblemDetails();
+            services.AddScoped<ISeedData, RoleSeedData>();
+            services.AddScoped<ISeedData, UserSeedData>();
+            services.AddScoped<ISeedData, SupplierSeedData>();
+            services.AddScoped<ISeedData, TreatmentSeedData>();
         }
     }
 }

@@ -21,18 +21,18 @@ namespace DentalClinic.ADL.Models
 
        public List<AppointmentTranslation> appointmentTranslations { get; set; } 
         public DateTime? AppointmentTime { get; set; }
-        public AppointmentStatusEnum AppointmentStatus { get; set; }
+        public AppointmentStatusEnum? AppointmentStatus { get; set; }
         public DateTime? ArrivalTime { get; set; }
-        public decimal ReservationFee { get; set; } 
-        public int QueueNumber { get; set; }
+        public decimal? ReservationFee { get; set; } 
+        public int? QueueNumber { get; set; }
 
         //relation with patient table
-        public string? PatientId { get; set; }
-        public Patient? Patient { get; set; }
+        public int PatientId { get; set; }
+        public Patient Patient { get; set; }
 
         //relation with users table
-        public string? UserId { get; set; }
-        public ApplicationUser? User { get; set; }
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
 
         //relation with payment ...should i keep it ? 
        public List<Payment>? payments { get; set; }

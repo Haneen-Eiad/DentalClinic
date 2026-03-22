@@ -10,17 +10,17 @@ namespace DentalClinic.ADL.Models
     public class Prescription : BaseModel
     {
         [MaxLength(500,ErrorMessage ="Too long text")]
-        public string PrescriptionNote { get; set; }
+        public string? PrescriptionNote { get; set; }
 
         //relation with Appointment
-        public string AppointmentId { get; set; }
-        public Appointment Appointment { get; set; }
+        public int? AppointmentId { get; set; }
+        public Appointment? Appointment { get; set; }
 
 
         //relation with Patient
-        public string PatientId { get; set; }
+        public int PatientId { get; set; }
         public Patient Patient { get; set; }
-        public List<PrescriptionItem> prescriptionItems { get; set; }
+        public List<PrescriptionItem>? prescriptionItems { get; set; }
  
     }
 }

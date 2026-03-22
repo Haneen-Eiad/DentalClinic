@@ -105,10 +105,13 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Appointment", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<int>("AppointmentStatus")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AppointmentStatus")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("AppointmentTime")
@@ -117,24 +120,30 @@ namespace DentalClinic.ADL.Migrations
                     b.Property<DateTime?>("ArrivalTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PatientId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("QueueNumber")
+                    b.Property<int>("PatientId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("ReservationFee")
+                    b.Property<int?>("PatientId1")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("QueueNumber")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("ReservationFee")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PatientId");
+
+                    b.HasIndex("PatientId1");
 
                     b.HasIndex("UserId");
 
@@ -143,19 +152,20 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.AppointmentTranslation", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("AppointmentId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AppointmentId")
+                        .HasColumnType("int");
 
                     b.Property<string>("AppointmentNotes")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Language")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -167,22 +177,23 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Equipment", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedAt")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EquipmentCategoriesId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("EquipmentCategoriesId")
+                        .HasColumnType("int");
 
                     b.Property<string>("EquipmentName")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int?>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -194,15 +205,17 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.EquipmentCategories", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CategoryName")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -212,29 +225,30 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Expense", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("BillDate")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("BillDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("BillPrice")
+                    b.Property<decimal?>("BillPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("CompanyName")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ExpenseName")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("IsPayed")
+                    b.Property<bool?>("IsPayed")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -244,14 +258,16 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Medicine", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedAt")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -259,19 +275,17 @@ namespace DentalClinic.ADL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("MedicineName")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<decimal>("MedicinePrice")
+                    b.Property<decimal?>("MedicinePrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("StockQuantity")
+                    b.Property<int?>("StockQuantity")
                         .HasColumnType("int");
 
-                    b.Property<string>("SupplierId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("SupplierId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -282,8 +296,11 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Patient", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("datetime2");
@@ -295,7 +312,7 @@ namespace DentalClinic.ADL.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal?>("Debt")
@@ -305,7 +322,6 @@ namespace DentalClinic.ADL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -321,6 +337,7 @@ namespace DentalClinic.ADL.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -332,24 +349,27 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.PatientTreatment", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("AppointmentId")
-                        .HasColumnType("nvarchar(450)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<int?>("AppointmentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PatientId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
 
                     b.Property<string>("PatientTreatmentNote")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("TreatmentId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("TreatmentId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -369,29 +389,32 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Payment", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("AppointmentId")
-                        .HasColumnType("nvarchar(450)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<int?>("AppointmentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal?>("PaymentAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("PaymentDate")
+                    b.Property<DateTime?>("PaymentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PaymentMethod")
+                    b.Property<int?>("PaymentMethod")
                         .HasColumnType("int");
 
-                    b.Property<int>("PaymentStatus")
+                    b.Property<int?>("PaymentStatus")
                         .HasColumnType("int");
 
-                    b.Property<string>("SupplierId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("SupplierId")
+                        .HasColumnType("int");
 
                     b.Property<string>("TransactionReference")
                         .HasColumnType("nvarchar(max)");
@@ -407,22 +430,22 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Prescription", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("AppointmentId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<int?>("AppointmentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PatientId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
 
                     b.Property<string>("PrescriptionNote")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -437,31 +460,29 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.PrescriptionItem", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedAt")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Dosage")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Duration")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Frequency")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MedicineId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("MedicineId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("PrescriptionId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("PrescriptionId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -474,21 +495,23 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Supplier", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CompanyName")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Dept")
+                    b.Property<decimal?>("Dept")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("SupplierDescription")
@@ -499,7 +522,6 @@ namespace DentalClinic.ADL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("sellerName")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -512,13 +534,16 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Treatment", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedAt")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("TreatmentPrice")
+                    b.Property<decimal?>("TreatmentPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -528,20 +553,21 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.TreatmentTranslation", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Language")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TreatmentDescription")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("TreatmentId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("TreatmentId")
+                        .HasColumnType("int");
 
                     b.Property<string>("TreatmentName")
                         .HasMaxLength(100)
@@ -690,12 +716,20 @@ namespace DentalClinic.ADL.Migrations
             modelBuilder.Entity("DentalClinic.ADL.Models.Appointment", b =>
                 {
                     b.HasOne("DentalClinic.ADL.Models.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("DentalClinic.ADL.Models.Patient", null)
                         .WithMany("Appointment")
-                        .HasForeignKey("PatientId");
+                        .HasForeignKey("PatientId1");
 
                     b.HasOne("DentalClinic.ADL.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Patient");
 
@@ -706,9 +740,7 @@ namespace DentalClinic.ADL.Migrations
                 {
                     b.HasOne("DentalClinic.ADL.Models.Appointment", "Appointment")
                         .WithMany("appointmentTranslations")
-                        .HasForeignKey("AppointmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AppointmentId");
 
                     b.Navigation("Appointment");
                 });
@@ -717,9 +749,7 @@ namespace DentalClinic.ADL.Migrations
                 {
                     b.HasOne("DentalClinic.ADL.Models.EquipmentCategories", "equipmentCategories")
                         .WithMany("Equipment")
-                        .HasForeignKey("EquipmentCategoriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EquipmentCategoriesId");
 
                     b.Navigation("equipmentCategories");
                 });
@@ -728,9 +758,7 @@ namespace DentalClinic.ADL.Migrations
                 {
                     b.HasOne("DentalClinic.ADL.Models.Supplier", "Supplier")
                         .WithMany("medicines")
-                        .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SupplierId");
 
                     b.Navigation("Supplier");
                 });
@@ -739,7 +767,9 @@ namespace DentalClinic.ADL.Migrations
                 {
                     b.HasOne("DentalClinic.ADL.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -752,7 +782,9 @@ namespace DentalClinic.ADL.Migrations
 
                     b.HasOne("DentalClinic.ADL.Models.Patient", "Patient")
                         .WithMany()
-                        .HasForeignKey("PatientId");
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DentalClinic.ADL.Models.Treatment", "Treatment")
                         .WithMany()
@@ -790,9 +822,7 @@ namespace DentalClinic.ADL.Migrations
                 {
                     b.HasOne("DentalClinic.ADL.Models.Appointment", "Appointment")
                         .WithMany()
-                        .HasForeignKey("AppointmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AppointmentId");
 
                     b.HasOne("DentalClinic.ADL.Models.Patient", "Patient")
                         .WithMany()
@@ -809,15 +839,11 @@ namespace DentalClinic.ADL.Migrations
                 {
                     b.HasOne("DentalClinic.ADL.Models.Medicine", "Medicine")
                         .WithMany()
-                        .HasForeignKey("MedicineId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MedicineId");
 
                     b.HasOne("DentalClinic.ADL.Models.Prescription", "Prescription")
                         .WithMany("prescriptionItems")
-                        .HasForeignKey("PrescriptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PrescriptionId");
 
                     b.Navigation("Medicine");
 
@@ -837,9 +863,7 @@ namespace DentalClinic.ADL.Migrations
                 {
                     b.HasOne("DentalClinic.ADL.Models.Treatment", "Treatment")
                         .WithMany("treatmentTranslations")
-                        .HasForeignKey("TreatmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TreatmentId");
 
                     b.Navigation("Treatment");
                 });

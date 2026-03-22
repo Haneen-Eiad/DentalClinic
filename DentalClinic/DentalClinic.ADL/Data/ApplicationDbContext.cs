@@ -45,6 +45,13 @@ namespace DentalClinic.ADL.Data
             builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaim");
             builder.Entity<IdentityUserRole<string>>().ToTable("UserRole");
 
+            builder.Entity<Appointment>()
+                .HasOne(c => c.Patient)
+                .WithMany()
+                .HasForeignKey(c => c.PatientId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+
 
         }
     }

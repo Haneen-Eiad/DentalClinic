@@ -10,9 +10,9 @@ namespace DentalClinic.ADL.Models
     public class Supplier : BaseModel
     {
         [MaxLength(100,ErrorMessage ="Too long text")]
-        public string CompanyName { get; set; }
+        public string? CompanyName { get; set; }
         [MaxLength(100,ErrorMessage ="Too long Text")]
-        public string sellerName { get; set; }
+        public string? sellerName { get; set; }
         [MaxLength(500,ErrorMessage ="Too long text ")]
         public string? SupplierDescription { get; set; }
 
@@ -24,10 +24,10 @@ namespace DentalClinic.ADL.Models
         public List<Payment>? payments { get; set; }
 
         [Range(0,double.MaxValue,ErrorMessage ="out og the range")]
-        public decimal Dept { get; set; } // i should put dept as bool also ? and quntity ?
+        public decimal? Dept { get; set; } // i should put dept as bool also ? and quntity ?
 
         //realtion with Medicines
-        public List <Medicine> medicines { get; set; }
+        public List <Medicine>? medicines { get; set; }
 
 
     }

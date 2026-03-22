@@ -12,7 +12,7 @@ namespace DentalClinic.ADL.Models
         [MaxLength(500,ErrorMessage ="Too long text")]
         public string? PatientTreatmentNote { get; set; }
         //relation with Treatment
-        public string? TreatmentId { get; set; }
+        public int? TreatmentId { get; set; }
         public Treatment? Treatment { get; set; }
 
         //relation with user
@@ -20,11 +20,11 @@ namespace DentalClinic.ADL.Models
         public ApplicationUser? User { get; set; }
         
         //relation with patient table 
-        public string? PatientId { get; set; }
-        public Patient? Patient { get; set; }
+        public int PatientId { get; set; }
+        public Patient Patient { get; set; }
 
         //realation with Appointment table 
-        public string? AppointmentId { get; set; }
+        public int? AppointmentId { get; set; }
         public Appointment? Appointment  { get; set; }
 
     }

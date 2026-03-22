@@ -1,17 +1,20 @@
 
 using DentalClinic.ADL.Data;
 using DentalClinic.ADL.Models;
+using DentalClinic.ADL.Utilities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Writers;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace DentalClinic.PL
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +60,8 @@ namespace DentalClinic.PL
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+           
+          
             var app = builder.Build();
             app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
             // Configure the HTTP request pipeline.
@@ -71,6 +76,17 @@ namespace DentalClinic.PL
 
             app.UseAuthorization();
 
+            //Create scope for seed data
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var Seeders = services.GetServices<ISeedData>();
+
+                foreach(var seeder in Seeders)
+                {
+                    await seeder.SeedData();
+                }
+            }
 
             app.MapControllers();
 
