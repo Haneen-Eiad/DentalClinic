@@ -65,6 +65,25 @@
           }
         }
       },
+      "Mapster/10.0.3": {
+        "dependencies": {
+          "Mapster.Core": "10.0.1"
+        },
+        "runtime": {
+          "lib/net9.0/Mapster.dll": {
+            "assemblyVersion": "10.0.3.0",
+            "fileVersion": "10.0.3.0"
+          }
+        }
+      },
+      "Mapster.Core/10.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Mapster.Core.dll": {
+            "assemblyVersion": "10.0.1.0",
+            "fileVersion": "10.0.1.0"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/9.0.1": {
         "runtime": {
           "lib/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
@@ -91,6 +110,18 @@
         },
         "runtime": {
           "lib/net9.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
+            "assemblyVersion": "9.0.1.0",
+            "fileVersion": "9.0.124.61009"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Identity.UI/9.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.FileProviders.Embedded": "9.0.1",
+          "Microsoft.Extensions.Identity.Stores": "9.0.1"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.Identity.UI.dll": {
             "assemblyVersion": "9.0.1.0",
             "fileVersion": "9.0.124.61009"
           }
@@ -604,6 +635,28 @@
           "lib/net9.0/Microsoft.Extensions.DependencyModel.dll": {
             "assemblyVersion": "9.0.0.1",
             "fileVersion": "9.0.124.61010"
+          }
+        }
+      },
+      "Microsoft.Extensions.FileProviders.Abstractions/9.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "9.0.1"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.FileProviders.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.124.61010"
+          }
+        }
+      },
+      "Microsoft.Extensions.FileProviders.Embedded/9.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.FileProviders.Abstractions": "9.0.1"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.FileProviders.Embedded.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.124.61009"
           }
         }
       },
@@ -1125,7 +1178,9 @@
       },
       "DentalClinic.BLL/1.0.0": {
         "dependencies": {
-          "DentalClinic.ADL": "1.0.0"
+          "DentalClinic.ADL": "1.0.0",
+          "Mapster": "10.0.3",
+          "Microsoft.AspNetCore.Identity.UI": "9.0.1"
         },
         "runtime": {
           "DentalClinic.BLL.dll": {
@@ -1163,6 +1218,20 @@
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
     },
+    "Mapster/10.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bMPpvOR/mRoZ+Bi+yGynjMg29P8oTj162Shz+PqCQuaKdxnEFyYe4mj1c3+XRoHFl8mTYQBWwotMwa4wHFb3UA==",
+      "path": "mapster/10.0.3",
+      "hashPath": "mapster.10.0.3.nupkg.sha512"
+    },
+    "Mapster.Core/10.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WqXtJqM9O1obr3r/l+n1HV0Ukld8j+BySv9EXOcDGWooA54AdUi4JsqKdQMvTLNmVGLjAi93zty5G9XouD8MaA==",
+      "path": "mapster.core/10.0.1",
+      "hashPath": "mapster.core.10.0.1.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Cryptography.Internal/9.0.1": {
       "type": "package",
       "serviceable": true,
@@ -1183,6 +1252,13 @@
       "sha512": "sha512-yZyj/m7nBsrx6JDIv5KSYH44lJsQ4K5RLEWaYRFQVoIRvGXQxMZ/TUCa7PKFtR/o6nz1fmy6bVciV/eN/NmjUw==",
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/9.0.1",
       "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.9.0.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Identity.UI/9.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fryJKvns90Wr6csFuA07pVbc0rXdqDTZKXpyT7IrV264+Y9EmTBgypEYUqwiE1mB1KjJ8az5MFqtj1OZeKzhPw==",
+      "path": "microsoft.aspnetcore.identity.ui/9.0.1",
+      "hashPath": "microsoft.aspnetcore.identity.ui.9.0.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.OpenApi/9.0.14": {
       "type": "package",
@@ -1365,6 +1441,20 @@
       "sha512": "sha512-FHPy9cbb0y09riEpsrU5XYpOgf4nTfHj7a0m1wLC5DosGtjJn9g03gGg1GTJmEdRFBQrJwbwTnHqLCdNLsoYgA==",
       "path": "microsoft.extensions.dependencymodel/9.0.1",
       "hashPath": "microsoft.extensions.dependencymodel.9.0.1.nupkg.sha512"
+    },
+    "Microsoft.Extensions.FileProviders.Abstractions/9.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DguZYt1DWL05+8QKWL3b6bW7A2pC5kYFMY5iXM6W2M23jhvcNa8v6AU8PvVJBcysxHwr9/jax0agnwoBumsSwg==",
+      "path": "microsoft.extensions.fileproviders.abstractions/9.0.1",
+      "hashPath": "microsoft.extensions.fileproviders.abstractions.9.0.1.nupkg.sha512"
+    },
+    "Microsoft.Extensions.FileProviders.Embedded/9.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Pnw9plviwRguhVxHjthooumWH8yUxfF54tuu/+VoVBOuqBmzu6VUnn4NGf3eVkEO1k5q2nihOIAQL/7UMemSmQ==",
+      "path": "microsoft.extensions.fileproviders.embedded/9.0.1",
+      "hashPath": "microsoft.extensions.fileproviders.embedded.9.0.1.nupkg.sha512"
     },
     "Microsoft.Extensions.Identity.Core/9.0.1": {
       "type": "package",

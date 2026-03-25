@@ -1,5 +1,42 @@
 [
   {
+    "ContainingType": "DentalClinic.PL.Areas.Identity.AccountsController",
+    "Method": "ConfirmEmailAsync",
+    "RelativePath": "api/auth/Accounts/ConfirmEmail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Token",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DentalClinic.PL.Areas.Identity.AccountsController",
+    "Method": "RegisterAsync",
+    "RelativePath": "api/auth/Accounts/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DentalClinic.ADL.DTOs.Request.RegisterRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "DentalClinic.PL.Controllers.ValuesController",
     "Method": "GetResult",
     "RelativePath": "api/Values",

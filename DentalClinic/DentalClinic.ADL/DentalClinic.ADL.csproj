@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\Request\" />
     <Folder Include="Repository\" />
   </ItemGroup>
 
