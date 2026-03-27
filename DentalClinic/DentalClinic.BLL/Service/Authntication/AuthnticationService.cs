@@ -23,14 +23,18 @@ namespace DentalClinic.BLL.Service.Authntication
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IEmailSender _emailSender;
         private readonly IConfiguration _configuration;
+        private readonly ITokenService _tokenService;
 
         public AuthnticationService(UserManager<ApplicationUser> userManager,
-            IEmailSender emailSender, IConfiguration configuration
+            IEmailSender emailSender, IConfiguration configuration,
+            ITokenService tokenService
+            
             )
         {
             _userManager = userManager;
             _emailSender = emailSender;
             _configuration = configuration;
+            _tokenService = tokenService;
         }
         public async Task<RegisterResponse> RegisterAsync(RegisterRequest registerRequest)
         {
@@ -99,34 +103,11 @@ namespace DentalClinic.BLL.Service.Authntication
             {
                 Success = true,
                 Message = "Login successfully",
-                AccessToken = await GenerateAccessToken(User)
+                AccessToken = await _tokenService.GenerateAccessToken(User)
             };
              
 
         }
-        private async Task<string> GenerateAccessToken(ApplicationUser user)
-        {
-            var role = await _userManager.GetRolesAsync(user);
-            var UserClaims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier,user.Id),
-                new Claim(ClaimTypes.Name,user.UserName),
-                new Claim(ClaimTypes.Email,user.Email),
-                new Claim(ClaimTypes.Role,string.Join(',',role))
-
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecurityKey"]!));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                issuer:_configuration["Jwt:Issuer"],
-                audience: _configuration["Jwt:Audience"],
-                claims: UserClaims,
-                expires: DateTime.UtcNow.AddMinutes(30),
-                signingCredentials: creds);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
+      
     }
 }

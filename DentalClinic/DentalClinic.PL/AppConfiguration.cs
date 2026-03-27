@@ -18,6 +18,7 @@ namespace DentalClinic.PL
             services.AddScoped<ISeedData, TreatmentSeedData>();
             services.AddScoped<IAuthnticationService, AuthnticationService>();
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddScoped<ITokenService, TokenService>();
         }
     }
 }

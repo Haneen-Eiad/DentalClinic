@@ -17,5 +17,7 @@ namespace DentalClinic.ADL.Models
         [MaxLength(100, ErrorMessage = "text length too ,long")]
         public string? Street { get; set; }
         public DateTime? BirthDate { get; set; }
+        public string? RefreshToken { get; set; }
+        public DateTime RefreshTokenExpiryTime { get; set; }
     }
 }
