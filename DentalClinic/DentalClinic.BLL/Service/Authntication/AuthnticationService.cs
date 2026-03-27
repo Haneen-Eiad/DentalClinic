@@ -4,10 +4,14 @@ using DentalClinic.ADL.Models;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,13 +22,15 @@ namespace DentalClinic.BLL.Service.Authntication
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IEmailSender _emailSender;
+        private readonly IConfiguration _configuration;
 
         public AuthnticationService(UserManager<ApplicationUser> userManager,
-            IEmailSender emailSender
+            IEmailSender emailSender, IConfiguration configuration
             )
         {
             _userManager = userManager;
             _emailSender = emailSender;
+            _configuration = configuration;
         }
         public async Task<RegisterResponse> RegisterAsync(RegisterRequest registerRequest)
         {
@@ -92,9 +98,35 @@ namespace DentalClinic.BLL.Service.Authntication
             return new LoginResponse
             {
                 Success = true,
-                Message = "Login successfully"
+                Message = "Login successfully",
+                AccessToken = await GenerateAccessToken(User)
+            };
+             
+
+        }
+        private async Task<string> GenerateAccessToken(ApplicationUser user)
+        {
+            var role = await _userManager.GetRolesAsync(user);
+            var UserClaims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier,user.Id),
+                new Claim(ClaimTypes.Name,user.UserName),
+                new Claim(ClaimTypes.Email,user.Email),
+                new Claim(ClaimTypes.Role,string.Join(',',role))
+
             };
 
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecurityKey"]!));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer:_configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Audience"],
+                claims: UserClaims,
+                expires: DateTime.UtcNow.AddMinutes(30),
+                signingCredentials: creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

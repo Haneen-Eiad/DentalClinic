@@ -184,3 +184,4 @@ C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\Dental
 C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.PL\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.PL\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll
 C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.PL\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\USER\Desktop\all\desktop\newWeb\BE\API\DentalClinic\DentalClinic\DentalClinic.PL\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -64,7 +64,9 @@ namespace DentalClinic.PL.Areas.Identity
             {
                 return BadRequest(new {message = _localizer["LoginFailed"].Value });
             }    
-            return Ok(new {message = _localizer["LoginSuccess"].Value });
+            return Ok(new {message = _localizer["LoginSuccess"].Value, result
+
+            });
         
         }
     }

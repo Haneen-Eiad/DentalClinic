@@ -8,6 +8,7 @@ namespace DentalClinic.ADL.DTOs.Response.Auth
 {
     public class LoginResponse : BaseResponse
     {
+        public string AccessToken { get; set; }
 
     }
 }
