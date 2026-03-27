@@ -1,7 +1,9 @@
-﻿using DentalClinic.ADL.DTOs.Request;
+﻿using DentalClinic.ADL.DTOs.Request.Auth;
 using DentalClinic.BLL.Service.Authntication;
+using DentalClinic.PL.Resources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 
 namespace DentalClinic.PL.Areas.Identity
 {
@@ -10,11 +12,17 @@ namespace DentalClinic.PL.Areas.Identity
     public class AccountsController : ControllerBase
     {
         private readonly IAuthnticationService _authnticationService;
+        private readonly IStringLocalizer<SharedResource> _localizer;
 
-        public AccountsController(IAuthnticationService authnticationService)
+        public AccountsController(IAuthnticationService authnticationService,
+            IStringLocalizer<SharedResource> localizer
+            
+            )
         {
             _authnticationService = authnticationService;
+            _localizer = localizer;
         }
+        // ارحع اشتخدم ال localozatin
         [HttpPost("Register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterRequest request)
         {
@@ -28,6 +36,7 @@ namespace DentalClinic.PL.Areas.Identity
         }
 
         // its for register
+        // ارحع اشتخدم ال localozatin
         [HttpGet("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmailAsync([FromQuery] string Token,[FromQuery] string UserId)
         {
@@ -44,6 +53,19 @@ namespace DentalClinic.PL.Areas.Identity
 
             return Ok(new {Success = true, message = " Email Confirmed Successfully"});
 
+        }
+
+        //Login controller
+        [HttpPost("Login")]
+        public async Task<IActionResult> LoginAsync(LoginRequest loginRequest)
+        {
+           var result = await _authnticationService.LoginAsync(loginRequest);
+            if(!result.Success)
+            {
+                return BadRequest(new {message = _localizer["LoginFailed"].Value });
+            }    
+            return Ok(new {message = _localizer["LoginSuccess"].Value });
+        
         }
     }
 }

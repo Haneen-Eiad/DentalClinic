@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DentalClinic.ADL.DTOs.Request
+namespace DentalClinic.ADL.DTOs.Request.Auth
 {
     public class RegisterRequest
     {

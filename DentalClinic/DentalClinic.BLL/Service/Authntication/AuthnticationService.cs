@@ -1,5 +1,5 @@
-﻿using DentalClinic.ADL.DTOs.Request;
-using DentalClinic.ADL.DTOs.Response;
+﻿using DentalClinic.ADL.DTOs.Request.Auth;
+using DentalClinic.ADL.DTOs.Response.Auth;
 using DentalClinic.ADL.Models;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,7 +40,6 @@ namespace DentalClinic.BLL.Service.Authntication
                     Errors = result.Errors.Select(e => e.Description).ToList()
                 };
             }
-
             await _userManager.AddToRoleAsync(User, "Patient");
             // send email for register confermation 
             var Token = await _userManager.GenerateEmailConfirmationTokenAsync(User);
@@ -48,14 +48,12 @@ namespace DentalClinic.BLL.Service.Authntication
             await _emailSender.SendEmailAsync(User.Email, "Register Confirmation", $"<h1>Welcome at Dental Clinic {User.UserName}</h1>" +
                 $"<a href='{EmailUrl}' style='padding:10px;background:#4CAF50;color:white;text-decoration:none;'>Confirm Email</a>");
 
-             
             return new RegisterResponse
             {
                 Success = true,
-                Message = " Register Successfully"
+                Message = " Registration successful. Please check your email to confirm your account☻"
 
             };
-            
 
         }
         public async Task<bool> ConfirmEmailAsync(string Token, string UserId)
@@ -67,6 +65,36 @@ namespace DentalClinic.BLL.Service.Authntication
             var result = await _userManager.ConfirmEmailAsync(User, Token);
             if(!result.Succeeded) { return false; }
             return true;
-        } 
+        }
+        public async Task<LoginResponse> LoginAsync(LoginRequest loginRequest)
+        {
+            var User = await _userManager.FindByEmailAsync(loginRequest.Email);
+            if(User is null)
+            {
+                return new LoginResponse
+                {
+                    Success = false,
+                    Message = "Invalid Email",
+
+                };
+
+            }
+           var result =  await _userManager.CheckPasswordAsync(User ,loginRequest.Password);
+            if (!result)
+            {
+                return new LoginResponse
+                {
+                    Success = false,
+                    Message = " wrong password"
+                };
+            }
+
+            return new LoginResponse
+            {
+                Success = true,
+                Message = "Login successfully"
+            };
+
+        }
     }
 }
