@@ -99,6 +99,33 @@ namespace DentalClinic.ADL.Data
             }
             return base.SaveChanges();
         }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default )
+        {
+            var entries = ChangeTracker.Entries<BaseModel>();
+            if (_httpContextAccessor.HttpContext != null)
+            {
+                var CurrentUser = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                foreach (var EntriesState in entries)
+                {
+                    if (EntriesState.State == EntityState.Added)
+                    {
+                        EntriesState.Property(x => x.CreatedBy).CurrentValue = CurrentUser;
+                        EntriesState.Property(x => x.CreatedAt).CurrentValue = DateTime.UtcNow;
+                    }
+                    else if (EntriesState.State == EntityState.Modified)
+                    {
+                        EntriesState.Property(x => x.UpdatedBy).CurrentValue = CurrentUser;
+                        EntriesState.Property(x => x.CreatedAt).CurrentValue = DateTime.UtcNow;
+                    }
+                }
+            }
+
+
+
+            return base.SaveChangesAsync(cancellationToken);
+        }
     }
 
    
