@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using System.Security.Claims;
 
 namespace DentalClinic.PL.Areas.Admin
 {
@@ -25,6 +26,8 @@ namespace DentalClinic.PL.Areas.Admin
         [HttpPost("")]
         public async Task<IActionResult> ExpenseCreateAsync([FromBody] CreateExpenseRequest expenseRequest)
         {
+            var CreatedBy = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Console.WriteLine(CreatedBy);
             var response = await _expenseService.CreateExpenseAsync(expenseRequest);
             if (!response.Success)
             {

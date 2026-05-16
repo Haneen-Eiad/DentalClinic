@@ -1,11 +1,14 @@
 ﻿using DentalClinic.ADL.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +16,8 @@ namespace DentalClinic.ADL.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
         public DbSet<Appointment> Appointment {  get; set; }
         public DbSet<Equipment> Equipment { get; set; }
         public DbSet<EquipmentCategories> EquipmentCategories { get; set; }
@@ -29,9 +34,12 @@ namespace DentalClinic.ADL.Data
 
 
         
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
+           , IHttpContextAccessor httpContextAccessor
+            )
         : base(options)
         {
+            _httpContextAccessor = httpContextAccessor;
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -63,9 +71,33 @@ namespace DentalClinic.ADL.Data
                 .HasIndex(s => s.SupplierIdentificationCard)
                 .IsUnique();
 
+            
+            
 
 
+        }
 
+        public override int SaveChanges()
+        {
+            var entries = ChangeTracker.Entries<BaseModel>();
+
+            var CurrentId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+           foreach(var EntityEntry in entries)
+            {
+                if(EntityEntry.State == EntityState.Added)
+                {
+                    EntityEntry.Property(x => x.CreatedBy).CurrentValue = CurrentId;
+                    EntityEntry.Property(x=>x.CreatedAt).CurrentValue = DateTime.UtcNow;
+
+                }
+                else if (EntityEntry.State == EntityState.Modified)
+                {
+                    EntityEntry.Property(x=>x.UpdatedBy).CurrentValue = CurrentId;
+                    EntityEntry.Property(x=>x.UpdatedAt).CurrentValue =DateTime.UtcNow;
+                }
+            }
+            return base.SaveChanges();
         }
     }
 
