@@ -10,6 +10,9 @@ namespace DentalClinic.ADL.Models
 {
     public class ApplicationUser :IdentityUser
     {
+     
+        [MaxLength(20)]
+        public string UserIdentificationCard { get; set; } = "123456789";
         [MaxLength(100,ErrorMessage ="Full Name Too long")]
         public string FullName { get; set; }
         [MaxLength(100,ErrorMessage ="text length too ,long")]

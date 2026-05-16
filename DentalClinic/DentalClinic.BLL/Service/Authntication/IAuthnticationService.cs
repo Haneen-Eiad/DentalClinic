@@ -13,5 +13,6 @@ namespace DentalClinic.BLL.Service.Authntication
         Task<RegisterResponse> RegisterAsync(RegisterRequest registerRequest);
         Task<bool> ConfirmEmailAsync(string Token, string UserId);
         Task<LoginResponse> LoginAsync(LoginRequest loginRequest);
+        Task<LoginResponse> RefreshTokenAsync(TokenApiModel tokenApiModelRequest);
     }
 }

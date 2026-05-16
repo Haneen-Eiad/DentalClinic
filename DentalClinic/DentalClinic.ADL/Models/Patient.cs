@@ -11,8 +11,12 @@ namespace DentalClinic.ADL.Models
         Male = 0,
         Female = 1
     }
+   
     public class Patient: BaseModel
     {
+
+        [MaxLength(20)]
+        public string PatientIdentificationCard { get; set; } = "123456789";
         [MaxLength(100,ErrorMessage ="Full Name Too long")]
         public string ?FullName { get; set; }
         public DateTime? BirthDate { get; set; }
@@ -29,8 +33,8 @@ namespace DentalClinic.ADL.Models
         [Range(0,double.MaxValue,ErrorMessage ="out of the range")]
         public decimal? Debt { get; set; }
         // relation with identity user -- 1 -1  relation 
-        public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
+        public string? UserId { get; set; }
+        public ApplicationUser? User { get; set; }
 
         // relation with Appointment
         public List<Appointment>? Appointment { get; set; }

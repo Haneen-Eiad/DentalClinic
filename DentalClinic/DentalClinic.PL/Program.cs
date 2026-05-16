@@ -2,6 +2,7 @@
 using DentalClinic.ADL.Data;
 using DentalClinic.ADL.Models;
 using DentalClinic.ADL.Utilities;
+using DentalClinic.BLL.MapesterConfiguration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -104,7 +105,8 @@ namespace DentalClinic.PL
 
             // cofig for addScopped
             AppConfiguration.Config(builder.Services);
- 
+
+            //MapesterConfig.MapesterConfigerRegister();
             var app = builder.Build();
             app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
             // Configure the HTTP request pipeline.

@@ -51,8 +51,23 @@ namespace DentalClinic.ADL.Data
                 .HasForeignKey(c => c.PatientId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<Patient>()
+                .HasIndex(p => p.PatientIdentificationCard)
+                .IsUnique();
+
+            builder.Entity<ApplicationUser>()
+                .HasIndex(u => u.UserIdentificationCard)
+                .IsUnique();
+
+            builder.Entity<Supplier>()
+                .HasIndex(s => s.SupplierIdentificationCard)
+                .IsUnique();
+
+
 
 
         }
     }
+
+   
 }

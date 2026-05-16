@@ -92,6 +92,11 @@ namespace DentalClinic.ADL.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
+                    b.Property<string>("UserIdentificationCard")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -105,6 +110,9 @@ namespace DentalClinic.ADL.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("UserIdentificationCard")
+                        .IsUnique();
 
                     b.ToTable("Users", (string)null);
                 });
@@ -338,15 +346,22 @@ namespace DentalClinic.ADL.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<string>("PatientIdentificationCard")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("Street")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PatientIdentificationCard")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -524,6 +539,11 @@ namespace DentalClinic.ADL.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<string>("SupplierIdentificationCard")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
@@ -534,6 +554,9 @@ namespace DentalClinic.ADL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("SupplierIdentificationCard")
+                        .IsUnique();
 
                     b.ToTable("Supplier");
                 });
@@ -773,9 +796,7 @@ namespace DentalClinic.ADL.Migrations
                 {
                     b.HasOne("DentalClinic.ADL.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });

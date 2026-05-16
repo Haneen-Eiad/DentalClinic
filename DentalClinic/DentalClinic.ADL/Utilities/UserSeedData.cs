@@ -27,12 +27,14 @@ namespace DentalClinic.ADL.Utilities
                     FullName = "Haitham Marei",
                     Email = "Haitham@gmail.com",
                     EmailConfirmed = true
+                    
                 };
                 var User2 = new ApplicationUser
                 {
                     UserName = "Nurse",
                     FullName = "Laila Ghanam",
                     Email = "lila@gmail.com",
+                  
                     EmailConfirmed = true
                 };
                 var User3 = new ApplicationUser
@@ -40,6 +42,7 @@ namespace DentalClinic.ADL.Utilities
                     UserName = "User1",
                     FullName = "Haneen Shtaya",
                     Email = "Haneen@gmail.com",
+                 
                     EmailConfirmed = true
                 };
 

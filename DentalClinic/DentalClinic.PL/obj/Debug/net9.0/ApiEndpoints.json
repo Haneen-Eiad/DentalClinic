@@ -38,6 +38,22 @@
   },
   {
     "ContainingType": "DentalClinic.PL.Areas.Identity.AccountsController",
+    "Method": "RefreshTokenAsync",
+    "RelativePath": "api/auth/Accounts/RefreshToken",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tokenApiModelRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.Auth.TokenApiModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DentalClinic.PL.Areas.Identity.AccountsController",
     "Method": "RegisterAsync",
     "RelativePath": "api/auth/Accounts/Register",
     "HttpMethod": "POST",
@@ -47,6 +63,166 @@
       {
         "Name": "request",
         "Type": "DentalClinic.ADL.DTOs.Request.Auth.RegisterRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DentalClinic.PL.Areas.Admin.EquipmentCategoriesController",
+    "Method": "CreateEquipmentCategoriesAsync",
+    "RelativePath": "api/EquipmentCategories",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DentalClinic.ADL.DTOs.Request.CreateEquipmentCategoriesRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DentalClinic.PL.Areas.Admin.EquipmentsController",
+    "Method": "CreateEquipmentAsync",
+    "RelativePath": "api/Equipments",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createEquipmentRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.CreateEquipmentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DentalClinic.PL.Areas.Admin.ExpensesController",
+    "Method": "ExpenseCreateAsync",
+    "RelativePath": "api/Expenses",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "expenseRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.CreateExpenseRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DentalClinic.PL.Areas.Admin.MedicinesController",
+    "Method": "CreateMedicineAsync",
+    "RelativePath": "api/Medicines",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "medicineRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.CreateMedicineRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DentalClinic.PL.Areas.Admin.PatientsController",
+    "Method": "CreatePatientAsync",
+    "RelativePath": "api/patients/Patients",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "patientRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.CreatePatientRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DentalClinic.PL.Areas.Admin.PatientTreatmentController",
+    "Method": "CreatePatientTreatmentAsync",
+    "RelativePath": "api/PatientTreatment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DentalClinic.ADL.DTOs.Request.CreatePatientTreatmentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DentalClinic.PL.Areas.Admin.PrescriptionController",
+    "Method": "createPrescriptionAsync",
+    "RelativePath": "api/Prescription",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prescriptionRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.CreatePrescriptionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DentalClinic.PL.Areas.Admin.PrescriptionItemsController",
+    "Method": "CreatePrescriptionItemAsync",
+    "RelativePath": "api/PrescriptionItems",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DentalClinic.ADL.DTOs.Request.CreatePrescriptionItemRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DentalClinic.PL.Areas.Admin.SuppliersController",
+    "Method": "createSupplierAsync",
+    "RelativePath": "api/Suppliers",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "supplierRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.CreateSupplierRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DentalClinic.PL.Areas.Admin.TreatmentsController",
+    "Method": "CreateTreatmentAsync",
+    "RelativePath": "api/Treatments",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createTreatmentRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.CreateTreatmentRequest",
         "IsRequired": true
       }
     ],

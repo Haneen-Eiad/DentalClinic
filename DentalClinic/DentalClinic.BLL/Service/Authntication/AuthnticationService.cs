@@ -4,6 +4,7 @@ using DentalClinic.ADL.Models;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -98,14 +99,60 @@ namespace DentalClinic.BLL.Service.Authntication
                     Message = " wrong password"
                 };
             }
+            //... start work on RefreshToken part
+            var accessToken = await _tokenService.GenerateAccessToken(User);
+            var RefreshToek = _tokenService.GenerateRefreshToken();
+
+            User.RefreshToken = RefreshToek;
+            User.RefreshTokenExpiryTime = DateTime.UtcNow.AddMonths(1);
+            await _userManager.UpdateAsync(User);
+            //  End of work on RefreshToken part.....
 
             return new LoginResponse
             {
                 Success = true,
                 Message = "Login successfully",
-                AccessToken = await _tokenService.GenerateAccessToken(User)
+                AccessToken = accessToken,
+                RefreshToken = RefreshToek
             };
              
+
+        }
+        public async Task<LoginResponse> RefreshTokenAsync(TokenApiModel tokenApiModelRequest)
+        {
+            string accessToken = tokenApiModelRequest.AccessToken;
+            string refreshToken = tokenApiModelRequest.RefreshToken;
+
+            var principal = _tokenService.GetPrincipalFromExpiredToken(accessToken);
+            var userName = principal.Identity.Name;
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == userName);
+
+           if(user is null || user.RefreshToken != refreshToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
+            {
+                return new LoginResponse
+                {
+                    Success = false,
+                    Message = "Invalid clint request"
+                };
+            }
+            var newAccessToken = await _tokenService.GenerateAccessToken(user);
+            var newRefreshToekn = _tokenService.GenerateRefreshToken();
+
+            user.RefreshToken = newRefreshToekn;
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddMonths(1);
+            await _userManager.UpdateAsync(user);
+
+            return new LoginResponse
+            {
+                Success = true,
+                Message = "Regenerate Refresh Token Successfully",
+                AccessToken = newAccessToken,
+                RefreshToken = newRefreshToekn
+            };
+            
+
+
+
 
         }
       

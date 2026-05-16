@@ -69,5 +69,16 @@ namespace DentalClinic.PL.Areas.Identity
             });
         
         }
+        //الترجمة
+        [HttpPatch("RefreshToken")]
+        public async Task<IActionResult> RefreshTokenAsync(TokenApiModel tokenApiModelRequest)
+        {
+            var result = await _authnticationService.RefreshTokenAsync(tokenApiModelRequest);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
     }
 }

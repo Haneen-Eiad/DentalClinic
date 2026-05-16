@@ -156,6 +156,9 @@
   <data name="AppointmentUpdated" xml:space="preserve">
     <value>تم تحديث الموعد</value>
   </data>
+  <data name="SupplierCantBeCreated" xml:space="preserve">
+    <value>حصل خطأ اثناء انشاء المزود</value>
+  </data>
   <data name="CreatedSuccessfully" xml:space="preserve">
     <value>تم الإنشاء بنجاح</value>
   </data>
@@ -260,6 +263,9 @@
   </data>
   <data name="PatientAlreadyExists" xml:space="preserve">
     <value>المريض موجود مسبقاً</value>
+  </data>
+  <data name="PatientCantCreated" xml:space="preserve">
+    <value>لا يمكن انشاء المريض</value>
   </data>
   <data name="PatientCreated" xml:space="preserve">
     <value>تم إنشاء المريض بنجاح</value>
@@ -395,5 +401,32 @@
   </data>
   <data name="ValueOutOfRange" xml:space="preserve">
     <value>القيمة خارج النطاق المسموح</value>
+  </data>
+  <data name="TreatmentCantCreated" xml:space="preserve">
+    <value>هناك خطأ اثناء انشاء العلاج</value>
+  </data>
+  <data name="PrescriptionCantCreated" xml:space="preserve">
+    <value>حصلت مشكله اثناء انشاء الوصفة الطبيىة</value>
+  </data>
+  <data name="MedicineCantCreate" xml:space="preserve">
+    <value>فشل انشاء الدواء</value>
+  </data>
+  <data name="ExpenseCantCreated" xml:space="preserve">
+    <value>فشل انشاء المصاريف</value>
+  </data>
+  <data name="EquipmentCategoriesCantCreated" xml:space="preserve">
+    <value>حدثت مشكلة اثناء انشاء الاصناف</value>
+  </data>
+  <data name="EquipmentCategoriesCreated" xml:space="preserve">
+    <value>تم انشاء الاصناف بنجاح</value>
+  </data>
+  <data name="EquipmentCantCreated" xml:space="preserve">
+    <value>فشل انشاء المعدات</value>
+  </data>
+  <data name="PatientTreatmentCantCreated" xml:space="preserve">
+    <value>تعذّر إنشاء علاج للمريض</value>
+  </data>
+  <data name="PatientTreatmentCreatedSuccessfully" xml:space="preserve">
+    <value>تم انشاء علاج المريض بنجاح</value>
   </data>
 </root>

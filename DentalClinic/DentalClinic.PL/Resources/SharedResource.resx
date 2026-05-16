@@ -156,6 +156,9 @@
   <data name="AppointmentUpdated" xml:space="preserve">
     <value>Appointment updated successfully</value>
   </data>
+  <data name="SupplierCantBeCreated" xml:space="preserve">
+    <value>can't create supplier</value>
+  </data>
   <data name="CreatedSuccessfully" xml:space="preserve">
     <value>Created successfully</value>
   </data>
@@ -260,6 +263,9 @@
   </data>
   <data name="PatientAlreadyExists" xml:space="preserve">
     <value>Patient already exists</value>
+  </data>
+  <data name="PatientCantCreated" xml:space="preserve">
+    <value>Can't Create Patient </value>
   </data>
   <data name="PatientCreated" xml:space="preserve">
     <value>Patient created successfully</value>
@@ -395,5 +401,32 @@
   </data>
   <data name="ValueOutOfRange" xml:space="preserve">
     <value>Value is out of allowed range</value>
+  </data>
+  <data name="TreatmentCantCreated" xml:space="preserve">
+    <value>Can't create treatment</value>
+  </data>
+  <data name="PrescriptionCantCreated" xml:space="preserve">
+    <value>Can't Prescription created</value>
+  </data>
+  <data name="MedicineCantCreate" xml:space="preserve">
+    <value>Medicine Creation Faild</value>
+  </data>
+  <data name="ExpenseCantCreated" xml:space="preserve">
+    <value>Can't Create Expense</value>
+  </data>
+  <data name="EquipmentCategoriesCantCreated" xml:space="preserve">
+    <value>Can't Create Equipment Categories</value>
+  </data>
+  <data name="EquipmentCategoriesCreated" xml:space="preserve">
+    <value>EquipmentCategoriesCreated</value>
+  </data>
+  <data name="EquipmentCantCreated" xml:space="preserve">
+    <value>Equipment Created Faild</value>
+  </data>
+  <data name="PatientTreatmentCantCreated" xml:space="preserve">
+    <value>Unable to create patient treatment</value>
+  </data>
+  <data name="PatientTreatmentCreatedSuccessfully" xml:space="preserve">
+    <value>Patient Treatment Created Successfully</value>
   </data>
 </root>

@@ -1,0 +1,16 @@
+﻿using DentalClinic.ADL.DTOs.Request;
+using DentalClinic.ADL.Models;
+using DentalClinic.ADL.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DentalClinic.ADL.DTOs.Response
+{
+    public class CreateTreatmentResponse :  BaseResponse
+    {
+       
+    }
+}

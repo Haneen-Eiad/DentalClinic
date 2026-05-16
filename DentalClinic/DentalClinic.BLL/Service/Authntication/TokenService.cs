@@ -4,9 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,16 +28,21 @@ namespace DentalClinic.BLL.Service.Authntication
         }
         public async Task<string>  GenerateAccessToken(ApplicationUser user)
         {
-            var role = await _userManager.GetRolesAsync(user);
+            var roles = await _userManager.GetRolesAsync(user);
             var UserClaims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier,user.Id),
                 new Claim(ClaimTypes.Name,user.UserName),
                 new Claim(ClaimTypes.Email,user.Email),
-                new Claim(ClaimTypes.Role,string.Join(',',role))
+                
 
             };
 
+            // its better than join cause maybe the user will have more than one role
+            foreach (var role in roles)
+            {
+                UserClaims.Add(new Claim(ClaimTypes.Role, role));
+            }
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecurityKey"]!));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
@@ -51,12 +58,31 @@ namespace DentalClinic.BLL.Service.Authntication
 
         public string GenerateRefreshToken()
         {
-            throw new NotImplementedException();
+            var randomNumber = new byte[32];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomNumber);
+                return Convert.ToBase64String(randomNumber);
+            }
         }
 
         public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
         {
-            throw new NotImplementedException();
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateAudience = false, //you might want to validate the audience and issuer depending on your use case
+                ValidateIssuer = false,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecurityKey"]!)),
+                ValidateLifetime = false //here we are saying that we don't care about the token's expiration date
+            };
+            var tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken securityToken;
+            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out securityToken);
+            var jwtSecurityToken = securityToken as JwtSecurityToken;
+            if (jwtSecurityToken == null || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+                throw new SecurityTokenException("Invalid token");
+            return principal;
         }
     }
 }

@@ -9,11 +9,30 @@ namespace DentalClinic.ADL.Models
 {
     public class Supplier : BaseModel
     {
-        [MaxLength(100,ErrorMessage ="Too long text")]
+        public Supplier()
+        {
+            // Initialize with a default unique value to prevent empty values from being saved
+            // Option chosen: timestamp-based prefix "SUP" + high-resolution UTC timestamp (fits in 20 chars).
+            // This is deterministic, unique-enough for typical usage, and avoids DB-side configuration.
+            SupplierIdentificationCard = GenerateIdentificationCard();
+        }
+
+        private static string GenerateIdentificationCard()
+        {
+            // Format: SUPyyyyMMddHHmmssfff -> length 3 + 17 = 20
+            // Example: SUP20260329123456789
+            return $"SUP{DateTime.UtcNow:yyyyMMddHHmmssfff}";
+        }
+
+        [MaxLength(20)]
+        [Required]
+        public string SupplierIdentificationCard { get; set; }
+
+        [MaxLength(100, ErrorMessage = "Too long text")]
         public string? CompanyName { get; set; }
-        [MaxLength(100,ErrorMessage ="Too long Text")]
+        [MaxLength(100, ErrorMessage = "Too long Text")]
         public string? sellerName { get; set; }
-        [MaxLength(500,ErrorMessage ="Too long text ")]
+        [MaxLength(500, ErrorMessage = "Too long text ")]
         public string? SupplierDescription { get; set; }
 
         //relation between user  to use phone number and email 

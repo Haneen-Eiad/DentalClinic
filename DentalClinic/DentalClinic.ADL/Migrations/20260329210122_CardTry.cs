@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DentalClinic.ADL.Migrations
 {
     /// <inheritdoc />
-    public partial class changebaseModelidtoint : Migration
+    public partial class CardTry : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -76,10 +76,13 @@ namespace DentalClinic.ADL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserIdentificationCard = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Street = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RefreshTokenExpiryTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -169,6 +172,7 @@ namespace DentalClinic.ADL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    PatientIdentificationCard = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
@@ -178,7 +182,7 @@ namespace DentalClinic.ADL.Migrations
                     MedicalNotes = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     BloodType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Debt = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -188,8 +192,7 @@ namespace DentalClinic.ADL.Migrations
                         name: "FK_Patient_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -198,6 +201,7 @@ namespace DentalClinic.ADL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    SupplierIdentificationCard = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     CompanyName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     sellerName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     SupplierDescription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
@@ -537,6 +541,12 @@ namespace DentalClinic.ADL.Migrations
                 column: "SupplierId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Patient_PatientIdentificationCard",
+                table: "Patient",
+                column: "PatientIdentificationCard",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Patient_UserId",
                 table: "Patient",
                 column: "UserId");
@@ -609,6 +619,12 @@ namespace DentalClinic.ADL.Migrations
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Supplier_SupplierIdentificationCard",
+                table: "Supplier",
+                column: "SupplierIdentificationCard",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TreatmentTranslations_TreatmentId",
                 table: "TreatmentTranslations",
                 column: "TreatmentId");
@@ -632,6 +648,12 @@ namespace DentalClinic.ADL.Migrations
                 name: "EmailIndex",
                 table: "Users",
                 column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_UserIdentificationCard",
+                table: "Users",
+                column: "UserIdentificationCard",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
