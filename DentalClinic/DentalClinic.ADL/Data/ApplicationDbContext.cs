@@ -31,6 +31,7 @@ namespace DentalClinic.ADL.Data
         public DbSet<Treatment> Treatment { get; set; }
         public DbSet<AppointmentTranslation> AppointmentTranslation { get; set; }
         public DbSet<TreatmentTranslation> TreatmentTranslations { get; set; }
+        public DbSet<AppointmentNote> appointmentNotes { get; set; }
 
 
         
@@ -54,10 +55,10 @@ namespace DentalClinic.ADL.Data
             builder.Entity<IdentityUserRole<string>>().ToTable("UserRole");
 
             builder.Entity<Appointment>()
-                .HasOne(c => c.Patient)
-                .WithMany()
-                .HasForeignKey(c => c.PatientId)
-                .OnDelete(DeleteBehavior.NoAction);
+              .HasOne(a => a.Patient)
+              .WithMany(p => p.Appointments)
+              .HasForeignKey(a => a.PatientId)
+              .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<Patient>()
                 .HasIndex(p => p.PatientIdentificationCard)
@@ -71,8 +72,31 @@ namespace DentalClinic.ADL.Data
                 .HasIndex(s => s.SupplierIdentificationCard)
                 .IsUnique();
 
-            
-            
+            builder.Entity<Appointment>()
+             .HasOne(a => a.Doctor)
+             .WithMany()
+             .HasForeignKey(a => a.DoctorId)
+             .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Patient>()
+            .HasOne(p => p.User)
+            .WithOne()
+            .HasForeignKey<Patient>(p => p.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+
+            builder.Entity<AppointmentNote>()
+            .HasOne(an => an.Appointment)
+            .WithMany(a => a.AppointmentNotes)
+            .HasForeignKey(an => an.AppointmentId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Payment>()
+            .HasOne(p => p.Appointment)
+            .WithOne(a => a.payment)
+            .HasForeignKey<Payment>(p => p.AppointmentId)
+            .OnDelete(DeleteBehavior.Cascade);
+
 
 
         }
@@ -117,7 +141,7 @@ namespace DentalClinic.ADL.Data
                     else if (EntriesState.State == EntityState.Modified)
                     {
                         EntriesState.Property(x => x.UpdatedBy).CurrentValue = CurrentUser;
-                        EntriesState.Property(x => x.CreatedAt).CurrentValue = DateTime.UtcNow;
+                        EntriesState.Property(x => x.UpdatedAt).CurrentValue = DateTime.UtcNow;
                     }
                 }
             }

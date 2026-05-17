@@ -21,10 +21,10 @@ namespace DentalClinic.ADL.Models
     }
     public class Payment :  BaseModel
     {
-        public PaymentMethodEnum ?PaymentMethod { get; set; }
-        public PaymentStatusEnum? PaymentStatus { get; set; }
+        public PaymentMethodEnum PaymentMethod { get; set; }
+        public PaymentStatusEnum PaymentStatus { get; set; }
         public DateTime? PaymentDate     { get; set; }
-        public decimal? PaymentAmount { get; set; }
+        public decimal PaymentAmount { get; set; }
         public string? TransactionReference { get; set; }
 
         //relation with appointment

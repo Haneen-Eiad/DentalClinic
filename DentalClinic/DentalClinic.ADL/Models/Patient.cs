@@ -33,10 +33,10 @@ namespace DentalClinic.ADL.Models
         [Range(0,double.MaxValue,ErrorMessage ="out of the range")]
         public decimal? Debt { get; set; }
         // relation with identity user -- 1 -1  relation 
-        public string? UserId { get; set; }
-        public ApplicationUser? User { get; set; }
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
 
         // relation with Appointment
-        public List<Appointment>? Appointment { get; set; }
+        public List<Appointment>? Appointments { get; set; }
     }
 }
