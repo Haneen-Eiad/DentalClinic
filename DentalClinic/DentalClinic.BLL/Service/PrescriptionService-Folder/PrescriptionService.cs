@@ -18,50 +18,75 @@ using System.Threading.Tasks;
  */
 namespace DentalClinic.BLL.Service.PrescriptionService_Folder
 {
+
+
+    //warrrrrrrrrrrrrrrrrrrrrrrrrrning
+    //i should delete the part that force to be at leAST ONE MEdicine caude prescirption may not have medicine
+    //*********************
+    //*********************
+    //**************
+
+
+
     public class PrescriptionService : IPrescriptionService
     {
         private readonly IGenericRepository<Prescription> _prescriptionRepo;
         private readonly IGenericRepository<PrescriptionItem> _prescriptionItemRepo;
         private readonly IGenericRepository<Patient> _patientRepo;
         private readonly IGenericRepository<Medicine> _medicineRepo;
+        private readonly IGenericRepository<Appointment> _appointmentRepo;
 
         public PrescriptionService(
             IGenericRepository<Prescription> PrescriptionRepo,
             IGenericRepository<PrescriptionItem> PrescriptionItemRepo,
             IGenericRepository<Patient> PatientRepo,
-            IGenericRepository<Medicine> MedicineRepo
+            IGenericRepository<Medicine> MedicineRepo,
+            IGenericRepository<Appointment> AppointmentRepo
+
             )
         {
             _prescriptionRepo = PrescriptionRepo;
             _prescriptionItemRepo = PrescriptionItemRepo;
             _patientRepo = PatientRepo;
             _medicineRepo = MedicineRepo;
+            _appointmentRepo = AppointmentRepo;
         }
 
         public async Task<CreatePrescriptionResponse> CreatePrescriptionAsync(
-            CreatePrescriptionRequest prescriptionRequest)
+     CreatePrescriptionRequest prescriptionRequest)
         {
-            //check if the patient exist
-            var PatientExists = await _patientRepo
-                .ExistsAsync(p => p.Id == prescriptionRequest.PatientId);
-
-            if (!PatientExists)
+            try
             {
-                return new CreatePrescriptionResponse
+                // 1. Check Appointment exists
+                var appointmentExists = await _appointmentRepo
+                    .ExistsAsync(a => a.Id == prescriptionRequest.AppointmentId);
+
+                if (!appointmentExists)
                 {
-                    Success = false,
-                    Message = "Patient not found"
-                };
-            }
+                    return new CreatePrescriptionResponse
+                    {
+                        Success = false,
+                        Message = "Appointment not found"
+                    };
+                }
 
-            //prevent duplicate medecine
-            if (prescriptionRequest.PrescriptionItems != null)
-            {
-                var duplicateMedecine = prescriptionRequest.PrescriptionItems
-                    .GroupBy(m => m.MedicineId)
-                    .Any(m => m.Count() > 1);
+                // 2. Validate request items
+                if (prescriptionRequest.PrescriptionItems == null ||
+                    !prescriptionRequest.PrescriptionItems.Any())
+                {
+                    return new CreatePrescriptionResponse
+                    {
+                        Success = false,
+                        Message = "Prescription must contain at least one medicine"
+                    };
+                }
 
-                if (duplicateMedecine)
+                // 3. Prevent duplicate medicines
+                var duplicateMedicines = prescriptionRequest.PrescriptionItems
+                    .GroupBy(x => x.MedicineId)
+                    .Any(g => g.Count() > 1);
+
+                if (duplicateMedicines)
                 {
                     return new CreatePrescriptionResponse
                     {
@@ -69,62 +94,58 @@ namespace DentalClinic.BLL.Service.PrescriptionService_Folder
                         Message = "Duplicate medicines are not allowed"
                     };
                 }
-            }
 
-            //create Prescription
-            var CreatePrescriptionAdapt =
-                prescriptionRequest.Adapt<Prescription>();
-
-            var CreatePrescriptionData =
-                await _prescriptionRepo.CreateAsync(CreatePrescriptionAdapt);
-
-            //create PrescriptionItems
-            if (prescriptionRequest.PrescriptionItems != null)
-            {
+                // 4. Validate medicines using ExistsAsync ONLY
                 foreach (var item in prescriptionRequest.PrescriptionItems)
                 {
-                    var medecineExists = await _medicineRepo
+                    var medicineExists = await _medicineRepo
                         .ExistsAsync(m => m.Id == item.MedicineId);
 
-                    if (!medecineExists)
+                    if (!medicineExists)
                     {
                         return new CreatePrescriptionResponse
                         {
                             Success = false,
-                            Message =
-                            $"Medicine with Id {item.MedicineId} is not found"
+                            Message = $"Medicine with Id {item.MedicineId} not found"
                         };
                     }
-
-                    // ❌ WRONG
-                    // var newprescriptionItemAdapt =
-                    //     prescriptionRequest.Adapt<PrescriptionItem>();
-
-
-                    // ✅ TRUE SOLUTION
-                    // adapt SINGLE ITEM not whole request
-                    var newprescriptionItemAdapt =
-                        item.Adapt<PrescriptionItem>();
-
-
-                    // ✅ VERY IMPORTANT
-                    // assign generated Prescription Id
-                    newprescriptionItemAdapt.PrescriptionId =
-                        CreatePrescriptionData.Id;
-
-
-                    // ✅ create item
-                    var newprescriptionItem =
-                        await _prescriptionItemRepo
-                        .CreateAsync(newprescriptionItemAdapt);
                 }
-            }
 
-            return new CreatePrescriptionResponse
+                // 5. Create Prescription
+                var prescription = prescriptionRequest.Adapt<Prescription>();
+
+                var createdPrescription = await _prescriptionRepo
+                    .CreateAsync(prescription);
+
+                // 6. Create Prescription Items
+                foreach (var item in prescriptionRequest.PrescriptionItems)
+                {
+                    var prescriptionItem = new PrescriptionItem
+                    {
+                        PrescriptionId = createdPrescription.Id,
+                        MedicineId = item.MedicineId,
+                        Dosage = item.Dosage,
+                        Frequency = item.Frequency,
+                        Duration = item.Duration
+                    };
+
+                    await _prescriptionItemRepo.CreateAsync(prescriptionItem);
+                }
+
+                return new CreatePrescriptionResponse
+                {
+                    Success = true,
+                    Message = "Prescription created successfully"
+                };
+            }
+            catch (Exception ex)
             {
-                Success = true,
-                Message = "Prescription created successfully"
-            };
+                return new CreatePrescriptionResponse
+                {
+                    Success = false,
+                    Message = ex.Message
+                };
+            }
         }
     }
-}
+    }

@@ -28,7 +28,7 @@ namespace DentalClinic.ADL.Utilities
                 CompanyName = "MedGolp",
                 sellerName = "Jalal",
                 SupplierDescription = "he is comming each sunday",
-                Dept = 15000,
+                Debt = 15000,
 
             };
                 await _context.Supplier.AddAsync(Supplier1);

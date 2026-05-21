@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,13 +16,22 @@ namespace DentalClinic.ADL.Models
         Cancelled = 4,
         Late = 5
     }
-    public class Appointment : BaseModel { 
-      
-       public List<AppointmentTranslation> appointmentTranslations { get; set; } 
+    public enum AppointmentTypeEnum
+    {
+        NewVisit = 0,
+        Revision = 1,
+        TreatmentSession = 2,
+        Emergency = 3
+    }
+    public class Appointment : BaseModel {
+
+        [Required]
         public DateTime AppointmentTime { get; set; }
         public AppointmentStatusEnum AppointmentStatus { get; set; } = AppointmentStatusEnum.Scheduled;
         public DateTime? ArrivalTime { get; set; }
-        public decimal? ReservationFee { get; set; } 
+        public decimal? ReservationFee { get; set; }
+        [Required]
+        public AppointmentTypeEnum appointmentType { get; set; } = AppointmentTypeEnum.NewVisit;
         public int? QueueNumber { get; set; }
         public List<AppointmentNote>? AppointmentNotes { get; set; }
 

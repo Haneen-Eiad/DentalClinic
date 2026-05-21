@@ -10,8 +10,8 @@ namespace DentalClinic.ADL.Models
     {
         public string Note { get; set; } = string.Empty;
 
-        public int AppointmentId { get; set; }
-        public Appointment Appointment { get; set; }
+        public int? AppointmentId { get; set; }
+        public Appointment? Appointment { get; set; }
 
     }
 }

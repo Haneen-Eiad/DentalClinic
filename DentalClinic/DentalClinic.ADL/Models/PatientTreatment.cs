@@ -4,28 +4,32 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace DentalClinic.ADL.Models
 {
     public class PatientTreatment :  BaseModel
     {
+        // الهيستوري لاجراءات المريض
         [MaxLength(500,ErrorMessage ="Too long text")]
         public string? PatientTreatmentNote { get; set; }
         //relation with Treatment
-        public int? TreatmentId { get; set; }
-        public Treatment? Treatment { get; set; }
-
+        [Required]
+        public int TreatmentId { get; set; }
+        public Treatment Treatment { get; set; }
+        [Required]
         //relation with user
-        public string? UserId { get; set; }
-        public ApplicationUser? User { get; set; }
-        
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
         //relation with patient table 
+        [Required]
         public int PatientId { get; set; }
         public Patient Patient { get; set; }
-
+       
         //realation with Appointment table 
-        public int? AppointmentId { get; set; }
-        public Appointment? Appointment  { get; set; }
+        [Required]
+        public int AppointmentId { get; set; }
+        public Appointment Appointment  { get; set; }
 
+        [Range(0, double.MaxValue)]
+        public decimal Cost { get; set; }
     }
 }

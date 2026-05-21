@@ -9,8 +9,9 @@ namespace DentalClinic.ADL.Models
 {
     public class EquipmentCategories : BaseModel
     {
-        [MaxLength(100,ErrorMessage ="Too long text")]
-        public string? CategoryName { get; set; }
+        [MaxLength(100, ErrorMessage = "Too long text")]
+        [Required]
+        public string CategoryName { get; set; } = string.Empty;
         public List <Equipment>? Equipment { get; set; }
     }
 }

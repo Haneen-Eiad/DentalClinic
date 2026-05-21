@@ -159,6 +159,9 @@ namespace DentalClinic.ADL.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("appointmentType")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
@@ -176,7 +179,7 @@ namespace DentalClinic.ADL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AppointmentId")
+                    b.Property<int?>("AppointmentId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -245,10 +248,11 @@ namespace DentalClinic.ADL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("EquipmentName")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("Quantity")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -273,6 +277,7 @@ namespace DentalClinic.ADL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CategoryName")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -356,6 +361,9 @@ namespace DentalClinic.ADL.Migrations
                     b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("MedicineName")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -391,15 +399,15 @@ namespace DentalClinic.ADL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("BirthDate")
+                    b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("BloodType")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("BloodType")
+                        .HasColumnType("int");
 
                     b.Property<string>("City")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -414,10 +422,11 @@ namespace DentalClinic.ADL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("Gender")
+                    b.Property<int>("Gender")
                         .HasColumnType("int");
 
                     b.Property<string>("MedicalNotes")
@@ -430,8 +439,8 @@ namespace DentalClinic.ADL.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Street")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -440,7 +449,6 @@ namespace DentalClinic.ADL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -449,7 +457,8 @@ namespace DentalClinic.ADL.Migrations
                         .IsUnique();
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Patient");
                 });
@@ -462,8 +471,11 @@ namespace DentalClinic.ADL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AppointmentId")
+                    b.Property<int>("AppointmentId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Cost")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -478,7 +490,7 @@ namespace DentalClinic.ADL.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<int?>("TreatmentId")
+                    b.Property<int>("TreatmentId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -488,6 +500,7 @@ namespace DentalClinic.ADL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -536,7 +549,8 @@ namespace DentalClinic.ADL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("TransactionReference")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -604,15 +618,17 @@ namespace DentalClinic.ADL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dosage")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Duration")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Frequency")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
-                    b.Property<int>("MedicineId")
+                    b.Property<int?>("MedicineId")
                         .HasColumnType("int");
 
                     b.Property<int>("PrescriptionId")
@@ -645,6 +661,7 @@ namespace DentalClinic.ADL.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CompanyName")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -654,7 +671,7 @@ namespace DentalClinic.ADL.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("Dept")
+                    b.Property<decimal>("Debt")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("SupplierDescription")
@@ -703,7 +720,7 @@ namespace DentalClinic.ADL.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("TreatmentPrice")
+                    b.Property<decimal>("TreatmentPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -725,19 +742,34 @@ namespace DentalClinic.ADL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Language")
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<string>("TreatmentDescription")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<int?>("TreatmentId")
+                    b.Property<int>("TreatmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("TreatmentName")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -903,8 +935,7 @@ namespace DentalClinic.ADL.Migrations
                     b.HasOne("DentalClinic.ADL.Models.Appointment", "Appointment")
                         .WithMany("AppointmentNotes")
                         .HasForeignKey("AppointmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Appointment");
                 });
@@ -912,7 +943,7 @@ namespace DentalClinic.ADL.Migrations
             modelBuilder.Entity("DentalClinic.ADL.Models.AppointmentTranslation", b =>
                 {
                     b.HasOne("DentalClinic.ADL.Models.Appointment", "Appointment")
-                        .WithMany("appointmentTranslations")
+                        .WithMany()
                         .HasForeignKey("AppointmentId");
 
                     b.Navigation("Appointment");
@@ -920,11 +951,11 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Equipment", b =>
                 {
-                    b.HasOne("DentalClinic.ADL.Models.EquipmentCategories", "equipmentCategories")
+                    b.HasOne("DentalClinic.ADL.Models.EquipmentCategories", "EquipmentCategory")
                         .WithMany("Equipment")
                         .HasForeignKey("EquipmentCategoriesId");
 
-                    b.Navigation("equipmentCategories");
+                    b.Navigation("EquipmentCategory");
                 });
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Medicine", b =>
@@ -943,8 +974,7 @@ namespace DentalClinic.ADL.Migrations
                     b.HasOne("DentalClinic.ADL.Models.ApplicationUser", "User")
                         .WithOne()
                         .HasForeignKey("DentalClinic.ADL.Models.Patient", "UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("User");
                 });
@@ -953,7 +983,9 @@ namespace DentalClinic.ADL.Migrations
                 {
                     b.HasOne("DentalClinic.ADL.Models.Appointment", "Appointment")
                         .WithMany()
-                        .HasForeignKey("AppointmentId");
+                        .HasForeignKey("AppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DentalClinic.ADL.Models.Patient", "Patient")
                         .WithMany()
@@ -963,11 +995,15 @@ namespace DentalClinic.ADL.Migrations
 
                     b.HasOne("DentalClinic.ADL.Models.Treatment", "Treatment")
                         .WithMany()
-                        .HasForeignKey("TreatmentId");
+                        .HasForeignKey("TreatmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DentalClinic.ADL.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Appointment");
 
@@ -1009,9 +1045,7 @@ namespace DentalClinic.ADL.Migrations
                 {
                     b.HasOne("DentalClinic.ADL.Models.Medicine", "Medicine")
                         .WithMany()
-                        .HasForeignKey("MedicineId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MedicineId");
 
                     b.HasOne("DentalClinic.ADL.Models.Prescription", "Prescription")
                         .WithMany("prescriptionItems")
@@ -1037,7 +1071,9 @@ namespace DentalClinic.ADL.Migrations
                 {
                     b.HasOne("DentalClinic.ADL.Models.Treatment", "Treatment")
                         .WithMany("treatmentTranslations")
-                        .HasForeignKey("TreatmentId");
+                        .HasForeignKey("TreatmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Treatment");
                 });
@@ -1096,8 +1132,6 @@ namespace DentalClinic.ADL.Migrations
             modelBuilder.Entity("DentalClinic.ADL.Models.Appointment", b =>
                 {
                     b.Navigation("AppointmentNotes");
-
-                    b.Navigation("appointmentTranslations");
 
                     b.Navigation("payment");
                 });

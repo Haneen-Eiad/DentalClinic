@@ -11,5 +11,9 @@ namespace DentalClinic.ADL.Repository
     {
          Task<T> CreateAsync(T Request);
         Task<bool> ExistsAsync(Expression<Func<T, bool>> Predicate);
+       Task<int> SaveChangesAsync();
+        int SaveChanges();
+
+
     }
 }

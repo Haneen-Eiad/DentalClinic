@@ -8,6 +8,6 @@ namespace DentalClinic.ADL.DTOs.Request
 {
     public class CreateEquipmentCategoriesRequest
     {
-        public string? CategoryName { get; set; }
+        public string CategoryName { get; set; }
     }
 }

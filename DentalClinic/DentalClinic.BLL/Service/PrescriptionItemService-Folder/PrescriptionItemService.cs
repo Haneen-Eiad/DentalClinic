@@ -51,9 +51,9 @@ namespace DentalClinic.BLL.Service.PrescriptionItemService_Folder
 
             }
 
-            //check Prescription
-            var PrescriptionExist =  await _prescriptionRepo.ExistsAsync(p=>p.Id == request.PrescriptionId);
-            if (!PrescriptionExist) { return new CreatePrescriptionItemResponse {Success = false, Message = "Prescription not found" }; }
+            //check Prescription .....correct this part caude i dlete the id
+            //var PrescriptionExist =  await _prescriptionRepo.ExistsAsync(p=>p.Id == request.PrescriptionId);
+            //if (!PrescriptionExist) { return new CreatePrescriptionItemResponse {Success = false, Message = "Prescription not found" }; }
 
 
             return new CreatePrescriptionItemResponse

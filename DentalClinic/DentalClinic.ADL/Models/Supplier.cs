@@ -4,50 +4,28 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace DentalClinic.ADL.Models
 {
     public class Supplier : BaseModel
     {
-        public Supplier()
-        {
-            // Initialize with a default unique value to prevent empty values from being saved
-            // Option chosen: timestamp-based prefix "SUP" + high-resolution UTC timestamp (fits in 20 chars).
-            // This is deterministic, unique-enough for typical usage, and avoids DB-side configuration.
-            SupplierIdentificationCard = GenerateIdentificationCard();
-        }
-
-        private static string GenerateIdentificationCard()
-        {
-            // Format: SUPyyyyMMddHHmmssfff -> length 3 + 17 = 20
-            // Example: SUP20260329123456789
-            return $"SUP{DateTime.UtcNow:yyyyMMddHHmmssfff}";
-        }
-
         [MaxLength(20)]
         [Required]
         public string SupplierIdentificationCard { get; set; }
-
         [MaxLength(100, ErrorMessage = "Too long text")]
-        public string? CompanyName { get; set; }
+        [Required]
+        public string CompanyName { get; set; } = string.Empty;
         [MaxLength(100, ErrorMessage = "Too long Text")]
-        public string? sellerName { get; set; }
+        public string? sellerName { get; set; } 
         [MaxLength(500, ErrorMessage = "Too long text ")]
-        public string? SupplierDescription { get; set; }
-
+        public string? SupplierDescription { get; set; } 
         //relation between user  to use phone number and email 
-        public string? UserId { get; set; }
+        public string? UserId { get; set; } 
         public ApplicationUser? ApplicationUser { get; set; }
-
         //relation with payment to get the payment type for the supplier 
         public List<Payment>? payments { get; set; }
-
-        [Range(0,double.MaxValue,ErrorMessage ="out og the range")]
-        public decimal? Dept { get; set; } // i should put dept as bool also ? and quntity ?
-
-        //realtion with Medicines
+        [Range(0, double.MaxValue, ErrorMessage = "Debt value i invalid")]
+        public decimal Debt { get; set; } = 0;
+        //realtion with Medicines 
         public List <Medicine>? medicines { get; set; }
-
-
     }
 }

@@ -7,17 +7,14 @@ using System.Threading.Tasks;
 
 namespace DentalClinic.ADL.Models
 {
+    //وصفة طبية
     public class Prescription : BaseModel
     {
         [MaxLength(500,ErrorMessage ="Too long text")]
         public string? PrescriptionNote { get; set; }
-
         //relation with Appointment
         public int AppointmentId { get; set; }
         public Appointment Appointment { get; set; }
-
-
         public List<PrescriptionItem>? prescriptionItems { get; set; }
- 
     }
 }

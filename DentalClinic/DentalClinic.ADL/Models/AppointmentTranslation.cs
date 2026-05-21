@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+// not used for now
 namespace DentalClinic.ADL.Models
 {
     public class AppointmentTranslation

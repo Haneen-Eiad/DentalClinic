@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DentalClinic.ADL.Migrations
 {
     /// <inheritdoc />
-    public partial class CardTry : Migration
+    public partial class initialrefactorDomailModelDTOs : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,8 +17,11 @@ namespace DentalClinic.ADL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    CategoryName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -36,7 +39,10 @@ namespace DentalClinic.ADL.Migrations
                     IsPayed = table.Column<bool>(type: "bit", nullable: true),
                     CompanyName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     BillDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -63,8 +69,11 @@ namespace DentalClinic.ADL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TreatmentPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    TreatmentPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -109,10 +118,13 @@ namespace DentalClinic.ADL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EquipmentName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    EquipmentName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     EquipmentCategoriesId = table.Column<int>(type: "int", nullable: true),
-                    Quantity = table.Column<int>(type: "int", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -151,10 +163,14 @@ namespace DentalClinic.ADL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TreatmentName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    TreatmentName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     TreatmentDescription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TreatmentId = table.Column<int>(type: "int", nullable: true)
+                    Language = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
+                    TreatmentId = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -163,7 +179,8 @@ namespace DentalClinic.ADL.Migrations
                         name: "FK_TreatmentTranslations_Treatment_TreatmentId",
                         column: x => x.TreatmentId,
                         principalTable: "Treatment",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,17 +190,20 @@ namespace DentalClinic.ADL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PatientIdentificationCard = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Street = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Gender = table.Column<int>(type: "int", nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Street = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Gender = table.Column<int>(type: "int", nullable: false),
                     EmergencyContactPhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MedicalNotes = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    BloodType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BloodType = table.Column<int>(type: "int", nullable: true),
                     Debt = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -192,7 +212,8 @@ namespace DentalClinic.ADL.Migrations
                         name: "FK_Patient_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -202,13 +223,16 @@ namespace DentalClinic.ADL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SupplierIdentificationCard = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    CompanyName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     sellerName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     SupplierDescription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Dept = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Debt = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -311,15 +335,18 @@ namespace DentalClinic.ADL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AppointmentTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AppointmentStatus = table.Column<int>(type: "int", nullable: true),
+                    AppointmentTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AppointmentStatus = table.Column<int>(type: "int", nullable: false),
                     ArrivalTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ReservationFee = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    appointmentType = table.Column<int>(type: "int", nullable: false),
                     QueueNumber = table.Column<int>(type: "int", nullable: true),
                     PatientId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    PatientId1 = table.Column<int>(type: "int", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    DoctorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -330,16 +357,11 @@ namespace DentalClinic.ADL.Migrations
                         principalTable: "Patient",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Appointment_Patient_PatientId1",
-                        column: x => x.PatientId1,
-                        principalTable: "Patient",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Appointment_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Appointment_Users_DoctorId",
+                        column: x => x.DoctorId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -348,13 +370,17 @@ namespace DentalClinic.ADL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MedicineName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    MedicinePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    SupplierId = table.Column<int>(type: "int", nullable: true),
+                    MedicineName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    MedicinePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SupplierId = table.Column<int>(type: "int", nullable: false),
                     ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    StockQuantity = table.Column<int>(type: "int", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    StockQuantity = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -363,7 +389,32 @@ namespace DentalClinic.ADL.Migrations
                         name: "FK_Medicine_Supplier_SupplierId",
                         column: x => x.SupplierId,
                         principalTable: "Supplier",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "appointmentNotes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AppointmentId = table.Column<int>(type: "int", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_appointmentNotes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_appointmentNotes_Appointment_AppointmentId",
+                        column: x => x.AppointmentId,
+                        principalTable: "Appointment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -393,11 +444,15 @@ namespace DentalClinic.ADL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PatientTreatmentNote = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    TreatmentId = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TreatmentId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PatientId = table.Column<int>(type: "int", nullable: false),
-                    AppointmentId = table.Column<int>(type: "int", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    AppointmentId = table.Column<int>(type: "int", nullable: false),
+                    Cost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -406,7 +461,8 @@ namespace DentalClinic.ADL.Migrations
                         name: "FK_PatientTreatment_Appointment_AppointmentId",
                         column: x => x.AppointmentId,
                         principalTable: "Appointment",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PatientTreatment_Patient_PatientId",
                         column: x => x.PatientId,
@@ -417,12 +473,14 @@ namespace DentalClinic.ADL.Migrations
                         name: "FK_PatientTreatment_Treatment_TreatmentId",
                         column: x => x.TreatmentId,
                         principalTable: "Treatment",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PatientTreatment_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -431,14 +489,17 @@ namespace DentalClinic.ADL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PaymentMethod = table.Column<int>(type: "int", nullable: true),
-                    PaymentStatus = table.Column<int>(type: "int", nullable: true),
+                    PaymentMethod = table.Column<int>(type: "int", nullable: false),
+                    PaymentStatus = table.Column<int>(type: "int", nullable: false),
                     PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    PaymentAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    TransactionReference = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TransactionReference = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     AppointmentId = table.Column<int>(type: "int", nullable: true),
                     SupplierId = table.Column<int>(type: "int", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -447,7 +508,8 @@ namespace DentalClinic.ADL.Migrations
                         name: "FK_Payment_Appointment_AppointmentId",
                         column: x => x.AppointmentId,
                         principalTable: "Appointment",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Payment_Supplier_SupplierId",
                         column: x => x.SupplierId,
@@ -462,9 +524,11 @@ namespace DentalClinic.ADL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PrescriptionNote = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    AppointmentId = table.Column<int>(type: "int", nullable: true),
-                    PatientId = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    AppointmentId = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -473,11 +537,6 @@ namespace DentalClinic.ADL.Migrations
                         name: "FK_Prescription_Appointment_AppointmentId",
                         column: x => x.AppointmentId,
                         principalTable: "Appointment",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Prescription_Patient_PatientId",
-                        column: x => x.PatientId,
-                        principalTable: "Patient",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -488,12 +547,15 @@ namespace DentalClinic.ADL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PrescriptionId = table.Column<int>(type: "int", nullable: true),
+                    PrescriptionId = table.Column<int>(type: "int", nullable: false),
                     MedicineId = table.Column<int>(type: "int", nullable: true),
-                    Dosage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Frequency = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Dosage = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    Frequency = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     Duration = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -507,8 +569,14 @@ namespace DentalClinic.ADL.Migrations
                         name: "FK_PrescriptionItem_Prescription_PrescriptionId",
                         column: x => x.PrescriptionId,
                         principalTable: "Prescription",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointment_DoctorId",
+                table: "Appointment",
+                column: "DoctorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointment_PatientId",
@@ -516,14 +584,9 @@ namespace DentalClinic.ADL.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Appointment_PatientId1",
-                table: "Appointment",
-                column: "PatientId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Appointment_UserId",
-                table: "Appointment",
-                column: "UserId");
+                name: "IX_appointmentNotes_AppointmentId",
+                table: "appointmentNotes",
+                column: "AppointmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AppointmentTranslation_AppointmentId",
@@ -549,7 +612,9 @@ namespace DentalClinic.ADL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Patient_UserId",
                 table: "Patient",
-                column: "UserId");
+                column: "UserId",
+                unique: true,
+                filter: "[UserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PatientTreatment_AppointmentId",
@@ -574,7 +639,9 @@ namespace DentalClinic.ADL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Payment_AppointmentId",
                 table: "Payment",
-                column: "AppointmentId");
+                column: "AppointmentId",
+                unique: true,
+                filter: "[AppointmentId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payment_SupplierId",
@@ -585,11 +652,6 @@ namespace DentalClinic.ADL.Migrations
                 name: "IX_Prescription_AppointmentId",
                 table: "Prescription",
                 column: "AppointmentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Prescription_PatientId",
-                table: "Prescription",
-                column: "PatientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PrescriptionItem_MedicineId",
@@ -666,6 +728,9 @@ namespace DentalClinic.ADL.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "appointmentNotes");
+
             migrationBuilder.DropTable(
                 name: "AppointmentTranslation");
 

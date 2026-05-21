@@ -22,12 +22,21 @@ namespace DentalClinic.ADL.Repository
         public async Task<T> CreateAsync(T Request)
         {
             await _context.AddAsync(Request);
-          await _context.SaveChangesAsync();
             return Request;
         }
         public async Task<bool> ExistsAsync(Expression<Func<T, bool>> Predicate)
         {
             return await _context.Set<T>().AnyAsync(Predicate);
+        }
+        public async Task<int> SaveChangesAsync () 
+        {
+             return await _context.SaveChangesAsync();
+              
+        }
+        public int SaveChanges()
+        {
+            return  _context.SaveChanges();
+
         }
 
 

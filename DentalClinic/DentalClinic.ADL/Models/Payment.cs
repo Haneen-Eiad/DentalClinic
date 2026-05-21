@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,9 +23,11 @@ namespace DentalClinic.ADL.Models
     public class Payment :  BaseModel
     {
         public PaymentMethodEnum PaymentMethod { get; set; }
-        public PaymentStatusEnum PaymentStatus { get; set; }
-        public DateTime? PaymentDate     { get; set; }
+        public PaymentStatusEnum PaymentStatus { get; set; } = PaymentStatusEnum.UnPaid;
+        public DateTime? PaymentDate { get; set; } = DateTime.UtcNow;
+        [Range(0,double.MaxValue)]
         public decimal PaymentAmount { get; set; }
+        [MaxLength(100)]
         public string? TransactionReference { get; set; }
 
         //relation with appointment
