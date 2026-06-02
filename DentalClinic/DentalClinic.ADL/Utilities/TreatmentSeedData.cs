@@ -24,7 +24,7 @@ namespace DentalClinic.ADL.Utilities
                 var Treatment1 = new Treatment
                 {
                     TreatmentPrice = 80,
-                    treatmentTranslations = new List<TreatmentTranslation>
+                    TreatmentTranslations = new List<TreatmentTranslation>
                    {
                      new TreatmentTranslation
                      {

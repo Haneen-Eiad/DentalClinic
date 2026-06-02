@@ -93,7 +93,7 @@ namespace DentalClinic.ADL.Data
 
             builder.Entity<Payment>()
             .HasOne(p => p.Appointment)
-            .WithOne(a => a.payment)
+            .WithOne(a => a.Payment)
             .HasForeignKey<Payment>(p => p.AppointmentId)
             .OnDelete(DeleteBehavior.Cascade);
 

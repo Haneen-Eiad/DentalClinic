@@ -22,15 +22,14 @@ namespace DentalClinic.PL.Areas.Admin
             _localizer = localizer;
         }
         [HttpPost("")]
-        public async Task<IActionResult> CreatePrescriptionItemAsync([FromBody] CreatePrescriptionItemRequest request)
+        public async Task<IActionResult> CreatePrescriptionItemAsync([FromBody] CreatePrescriptionItemRequest request, [FromQuery] int prescriptionId)
         {
-            var response = await _prescriptionItemService.CreatePrescriptionItemAsync(request);
+            var response = await _prescriptionItemService.CreatePrescriptionItemAsync(request, prescriptionId);
             if (!response.Success)
             {
                 return BadRequest(new { message = _localizer["PrescriptionCantCreated"].Value, response });
-
             }
-            return Ok (new {message = _localizer["PrescriptionCreated"].Value, response});
+            return Ok(new { message = _localizer["PrescriptionCreated"].Value, response });
         }
     }
 }

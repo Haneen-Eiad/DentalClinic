@@ -11,7 +11,7 @@ namespace DentalClinic.ADL.Models
     {
         //الاجراء للمريض
         [Required]
-        public List<TreatmentTranslation>? treatmentTranslations {  get; set; }
+        public List<TreatmentTranslation>? TreatmentTranslations {  get; set; }
         [Required]
         [Range(.01,double.MaxValue)]
         public decimal TreatmentPrice { get; set; }

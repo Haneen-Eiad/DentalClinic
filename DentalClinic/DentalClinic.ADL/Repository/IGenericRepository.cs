@@ -10,6 +10,7 @@ namespace DentalClinic.ADL.Repository
     public  interface IGenericRepository<T> where T : class
     {
          Task<T> CreateAsync(T Request);
+        Task<T?> FindByIdAsync(object Id);
         Task<bool> ExistsAsync(Expression<Func<T, bool>> Predicate);
        Task<int> SaveChangesAsync();
         int SaveChanges();

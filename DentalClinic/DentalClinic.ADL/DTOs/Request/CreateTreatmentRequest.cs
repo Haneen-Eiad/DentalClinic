@@ -13,6 +13,6 @@ namespace DentalClinic.ADL.DTOs.Request
         [Range(.01,double.MaxValue,ErrorMessage = "Treatment Price out range")]
         public decimal TreatmentPrice { get; set; }
         [Required]
-        public List<CreateTreatmentTranslationRequest>? createTreatmentTranslation { get; set; }
+        public List<CreateTreatmentTranslationRequest>? CreateTreatmentTranslation { get; set; }
     }
 }

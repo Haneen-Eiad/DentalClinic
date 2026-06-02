@@ -4,6 +4,7 @@ using DentalClinic.ADL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DentalClinic.ADL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260522113051_smallChanges")]
+    partial class smallChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,9 +134,6 @@ namespace DentalClinic.ADL.Migrations
                     b.Property<DateTime>("AppointmentTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("AppointmentType")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("ArrivalTime")
                         .HasColumnType("datetime2");
 
@@ -161,6 +161,9 @@ namespace DentalClinic.ADL.Migrations
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("appointmentType")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -675,10 +678,6 @@ namespace DentalClinic.ADL.Migrations
                     b.Property<decimal>("Debt")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("SellerName")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("SupplierDescription")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
@@ -696,6 +695,10 @@ namespace DentalClinic.ADL.Migrations
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("sellerName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -963,7 +966,7 @@ namespace DentalClinic.ADL.Migrations
             modelBuilder.Entity("DentalClinic.ADL.Models.Medicine", b =>
                 {
                     b.HasOne("DentalClinic.ADL.Models.Supplier", "Supplier")
-                        .WithMany("Medicines")
+                        .WithMany("medicines")
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1019,12 +1022,12 @@ namespace DentalClinic.ADL.Migrations
             modelBuilder.Entity("DentalClinic.ADL.Models.Payment", b =>
                 {
                     b.HasOne("DentalClinic.ADL.Models.Appointment", "Appointment")
-                        .WithOne("Payment")
+                        .WithOne("payment")
                         .HasForeignKey("DentalClinic.ADL.Models.Payment", "AppointmentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DentalClinic.ADL.Models.Supplier", "Supplier")
-                        .WithMany("Payments")
+                        .WithMany("payments")
                         .HasForeignKey("SupplierId");
 
                     b.Navigation("Appointment");
@@ -1072,7 +1075,7 @@ namespace DentalClinic.ADL.Migrations
             modelBuilder.Entity("DentalClinic.ADL.Models.TreatmentTranslation", b =>
                 {
                     b.HasOne("DentalClinic.ADL.Models.Treatment", "Treatment")
-                        .WithMany("TreatmentTranslations")
+                        .WithMany("treatmentTranslations")
                         .HasForeignKey("TreatmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1135,7 +1138,7 @@ namespace DentalClinic.ADL.Migrations
                 {
                     b.Navigation("AppointmentNotes");
 
-                    b.Navigation("Payment");
+                    b.Navigation("payment");
                 });
 
             modelBuilder.Entity("DentalClinic.ADL.Models.EquipmentCategories", b =>
@@ -1155,14 +1158,14 @@ namespace DentalClinic.ADL.Migrations
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Supplier", b =>
                 {
-                    b.Navigation("Medicines");
+                    b.Navigation("medicines");
 
-                    b.Navigation("Payments");
+                    b.Navigation("payments");
                 });
 
             modelBuilder.Entity("DentalClinic.ADL.Models.Treatment", b =>
                 {
-                    b.Navigation("TreatmentTranslations");
+                    b.Navigation("treatmentTranslations");
                 });
 #pragma warning restore 612, 618
         }

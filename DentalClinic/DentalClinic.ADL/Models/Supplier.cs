@@ -15,17 +15,17 @@ namespace DentalClinic.ADL.Models
         [Required]
         public string CompanyName { get; set; } = string.Empty;
         [MaxLength(100, ErrorMessage = "Too long Text")]
-        public string? sellerName { get; set; } 
+        public string? SellerName { get; set; } 
         [MaxLength(500, ErrorMessage = "Too long text ")]
         public string? SupplierDescription { get; set; } 
         //relation between user  to use phone number and email 
         public string? UserId { get; set; } 
         public ApplicationUser? ApplicationUser { get; set; }
         //relation with payment to get the payment type for the supplier 
-        public List<Payment>? payments { get; set; }
+        public List<Payment>? Payments { get; set; }
         [Range(0, double.MaxValue, ErrorMessage = "Debt value i invalid")]
         public decimal Debt { get; set; } = 0;
         //realtion with Medicines 
-        public List <Medicine>? medicines { get; set; }
+        public List <Medicine>? Medicines { get; set; }
     }
 }

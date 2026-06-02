@@ -28,8 +28,8 @@ namespace DentalClinic.BLL.Service.TreatmentService_Folder
         {
 
             //see if there is a translted data or not
-            if(ceateTreatmentRequest.createTreatmentTranslation == null 
-                || !ceateTreatmentRequest.createTreatmentTranslation.Any())
+            if(ceateTreatmentRequest.CreateTreatmentTranslation == null 
+                || !ceateTreatmentRequest.CreateTreatmentTranslation.Any())
             {
 
                 return new CreateTreatmentResponse
@@ -39,7 +39,7 @@ namespace DentalClinic.BLL.Service.TreatmentService_Folder
                 };
             }
             // see if the languse dublicated
-            var DublicatedLang = ceateTreatmentRequest.createTreatmentTranslation
+            var DublicatedLang = ceateTreatmentRequest.CreateTreatmentTranslation
                 .GroupBy(l => l.Language)
                 .Any(l => l.Count() > 1);
 
@@ -71,9 +71,9 @@ namespace DentalClinic.BLL.Service.TreatmentService_Folder
 
 
             }
-            if(ceateTreatmentRequest.createTreatmentTranslation != null)
+            if(ceateTreatmentRequest.CreateTreatmentTranslation != null)
             {
-                foreach(var Tr in ceateTreatmentRequest.createTreatmentTranslation)
+                foreach(var Tr in ceateTreatmentRequest.CreateTreatmentTranslation)
                 {
                     var TreatmentTranslation = new TreatmentTranslation
                     {

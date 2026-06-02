@@ -10,6 +10,6 @@ namespace DentalClinic.BLL.Service.PrescriptionItemService_Folder
 {
     public interface IPrescriptionItemService
     {
-        Task<CreatePrescriptionItemResponse> CreatePrescriptionItemAsync(CreatePrescriptionItemRequest request);
+        Task<CreatePrescriptionItemResponse> CreatePrescriptionItemAsync(CreatePrescriptionItemRequest request, int prescriptionId);
     }
 }

@@ -31,7 +31,7 @@ namespace DentalClinic.ADL.Models
         public DateTime? ArrivalTime { get; set; }
         public decimal? ReservationFee { get; set; }
         [Required]
-        public AppointmentTypeEnum appointmentType { get; set; } = AppointmentTypeEnum.NewVisit;
+        public AppointmentTypeEnum AppointmentType { get; set; } = AppointmentTypeEnum.NewVisit;
         public int? QueueNumber { get; set; }
         public List<AppointmentNote>? AppointmentNotes { get; set; }
 
@@ -44,7 +44,7 @@ namespace DentalClinic.ADL.Models
         public ApplicationUser Doctor { get; set; }
 
         //relation with payment ...its not list cause i made the fees for reservation fixed amount which is 20 shekels 
-       public Payment? payment { get; set; }
+       public Payment? Payment { get; set; }
 
     }
 }

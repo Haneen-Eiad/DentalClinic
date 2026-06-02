@@ -10,24 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 /*
- 
  Create Prescription (Parent)
-→ then Create PrescriptionItems (Children)
-→ inside ONE service
- 
+ → then Create PrescriptionItems (Children)
+ → inside ONE service
  */
 namespace DentalClinic.BLL.Service.PrescriptionService_Folder
 {
-
-
-    //warrrrrrrrrrrrrrrrrrrrrrrrrrning
-    //i should delete the part that force to be at leAST ONE MEdicine caude prescirption may not have medicine
-    //*********************
-    //*********************
-    //**************
-
-
-
     public class PrescriptionService : IPrescriptionService
     {
         private readonly IGenericRepository<Prescription> _prescriptionRepo;
@@ -42,7 +30,6 @@ namespace DentalClinic.BLL.Service.PrescriptionService_Folder
             IGenericRepository<Patient> PatientRepo,
             IGenericRepository<Medicine> MedicineRepo,
             IGenericRepository<Appointment> AppointmentRepo
-
             )
         {
             _prescriptionRepo = PrescriptionRepo;
@@ -52,8 +39,7 @@ namespace DentalClinic.BLL.Service.PrescriptionService_Folder
             _appointmentRepo = AppointmentRepo;
         }
 
-        public async Task<CreatePrescriptionResponse> CreatePrescriptionAsync(
-     CreatePrescriptionRequest prescriptionRequest)
+        public async Task<CreatePrescriptionResponse> CreatePrescriptionAsync(CreatePrescriptionRequest prescriptionRequest)
         {
             try
             {
@@ -148,4 +134,4 @@ namespace DentalClinic.BLL.Service.PrescriptionService_Folder
             }
         }
     }
-    }
+}

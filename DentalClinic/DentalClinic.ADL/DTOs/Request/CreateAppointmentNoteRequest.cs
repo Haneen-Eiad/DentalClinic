@@ -5,16 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DentalClinic.ADL.Models
+namespace DentalClinic.ADL.DTOs.Request
 {
-    public class AppointmentNote : BaseModel
+    public class CreateAppointmentNoteRequest
     {
         [Required]
-        [MaxLength(1000)]
+        [MaxLength(1000,ErrorMessage = "Appointment Note out of range")]
         public string Note { get; set; } = string.Empty;
-
-        public int AppointmentId { get; set; }
-        public Appointment Appointment { get; set; }
-
     }
 }

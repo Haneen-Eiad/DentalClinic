@@ -192,6 +192,11 @@
         "Name": "request",
         "Type": "DentalClinic.ADL.DTOs.Request.CreatePrescriptionItemRequest",
         "IsRequired": true
+      },
+      {
+        "Name": "prescriptionId",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

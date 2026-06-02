@@ -25,8 +25,9 @@ namespace DentalClinic.ADL.Utilities
 
             var Supplier1 = new Supplier
             {
+                SupplierIdentificationCard = "405020266",
                 CompanyName = "MedGolp",
-                sellerName = "Jalal",
+                SellerName = "Jalal",
                 SupplierDescription = "he is comming each sunday",
                 Debt = 15000,
 
