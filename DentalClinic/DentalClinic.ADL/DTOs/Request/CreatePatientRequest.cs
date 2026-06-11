@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DentalClinic.ADL.DTOs.Request
@@ -32,8 +33,11 @@ namespace DentalClinic.ADL.DTOs.Request
         [MaxLength(500,ErrorMessage = "Medical Notes too long")]
         public string? MedicalNotes { get; set; }
         //select options at FE
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public BloodTypeEnum? BloodType { get; set; }
         [Range(0, double.MaxValue, ErrorMessage = "out of the range")]
+        //  Consider managing patient debt through payments/invoices
+        // instead of setting it during registration.
         public decimal? Debt { get; set; }
 
     }

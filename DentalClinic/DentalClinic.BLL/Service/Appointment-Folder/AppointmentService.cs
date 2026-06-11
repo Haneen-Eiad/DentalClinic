@@ -33,7 +33,7 @@ namespace DentalClinic.BLL.Service.Appointment_Folder
             var patient = await _patientRepo.FindByIdAsync(createAppointmentRequest.PatientId);
             if (patient == null)
             {
-                return new CreateAppointmentResponse { Success = false, Message = "Patient is not registered" };
+                return new CreateAppointmentResponse { Success = false, Message = "PatientNotFound" };
             }
             // check doctor
             var doctor = await _userManager.FindByIdAsync(createAppointmentRequest.DoctorId);

@@ -3,6 +3,7 @@ using DentalClinic.ADL.Repository;
 using DentalClinic.ADL.Repository.PatientRepo;
 using DentalClinic.ADL.Utilities;
 using DentalClinic.BLL.Service;
+using DentalClinic.BLL.Service.Appointment_Folder;
 using DentalClinic.BLL.Service.Authntication;
 using DentalClinic.BLL.Service.Equipment_Folder;
 using DentalClinic.BLL.Service.EquipmentCategories_Folder;
@@ -45,6 +46,7 @@ namespace DentalClinic.PL
             services.AddScoped<IEquipmentService, EquipmentService>();
             services.AddScoped<IPatientTreatmentService, PatientTreatmentService>();
             services.AddScoped<IPrescriptionService, PrescriptionService>();
+            services.AddScoped<IAppointmentService, AppointmentService>();
         }
     }
 }

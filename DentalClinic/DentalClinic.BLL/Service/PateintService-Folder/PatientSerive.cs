@@ -35,8 +35,10 @@ namespace DentalClinic.BLL.Service.PateintService_Folder
                     return new CreatePatientResponse { Success = false, Message = "Can't create patient" };
                 }
 
-                
+                await _patientRepository.SaveChangesAsync();
                 return new CreatePatientResponse { Success = true, Message = "Patient created successfully" };
+
+             
             }
             catch (Exception ex)
             {

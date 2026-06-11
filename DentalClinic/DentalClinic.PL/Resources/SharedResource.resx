@@ -429,4 +429,7 @@
   <data name="PatientTreatmentCreatedSuccessfully" xml:space="preserve">
     <value>Patient Treatment Created Successfully</value>
   </data>
+  <data name="AppointmentCan'tCreated" xml:space="preserve">
+    <value>Can't Create Appointment </value>
+  </data>
 </root>

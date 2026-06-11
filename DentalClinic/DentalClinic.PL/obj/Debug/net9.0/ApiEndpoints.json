@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "DentalClinic.PL.Areas.Admin.AppointmentsController",
+    "Method": "CreateAppointmentAsync",
+    "RelativePath": "api/Appointments",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DentalClinic.ADL.DTOs.Request.CreateAppointmentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "DentalClinic.PL.Areas.Identity.AccountsController",
     "Method": "ConfirmEmailAsync",
     "RelativePath": "api/auth/Accounts/ConfirmEmail",

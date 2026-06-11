@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
+
 namespace DentalClinic.ADL.Models
 {
     public enum GenderEnum
@@ -28,7 +30,7 @@ namespace DentalClinic.ADL.Models
 
         [MaxLength(20)]
         [Required]
-        public string PatientIdentificationCard { get; set; } 
+        public string PatientIdentificationCard { get; set; } = string.Empty;
         [MaxLength(100,ErrorMessage ="Full Name Too long")]
         public string FullName { get; set; } = string.Empty;
         public DateTime BirthDate { get; set; }
@@ -41,7 +43,12 @@ namespace DentalClinic.ADL.Models
         public string? EmergencyContactPhone { get; set; }
         [MaxLength(500,ErrorMessage ="Too long Text")]
         public string? MedicalNotes { get; set; }
+
+        // Allow binding from both string names and numeric values for the enum.
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+       
         public BloodTypeEnum? BloodType { get; set; }
+
         [Range(0,double.MaxValue,ErrorMessage ="out of the range")]
         public decimal? Debt { get; set; }
         // relation with identity user -- 1 -1  relation 

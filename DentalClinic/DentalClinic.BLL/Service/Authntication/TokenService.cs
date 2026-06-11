@@ -34,15 +34,11 @@ namespace DentalClinic.BLL.Service.Authntication
                 new Claim(ClaimTypes.NameIdentifier,user.Id),
                 new Claim(ClaimTypes.Name,user.UserName),
                 new Claim(ClaimTypes.Email,user.Email),
-                
+                new Claim(ClaimTypes.Role,string.Join(',',roles))
 
             };
 
-            // its better than join cause maybe the user will have more than one role
-            foreach (var role in roles)
-            {
-                UserClaims.Add(new Claim(ClaimTypes.Role, role));
-            }
+           
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecurityKey"]!));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 

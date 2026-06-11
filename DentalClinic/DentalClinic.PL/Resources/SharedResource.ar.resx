@@ -429,4 +429,7 @@
   <data name="PatientTreatmentCreatedSuccessfully" xml:space="preserve">
     <value>تم انشاء علاج المريض بنجاح</value>
   </data>
+  <data name="AppointmentCan'tCreated" xml:space="preserve">
+    <value>حدث خطأ اثناء انشاء الموعد</value>
+  </data>
 </root>
