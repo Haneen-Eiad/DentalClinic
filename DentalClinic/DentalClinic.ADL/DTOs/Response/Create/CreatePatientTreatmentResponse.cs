@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DentalClinic.ADL.DTOs.Response
+namespace DentalClinic.ADL.DTOs.Response.Create
 {
-    public class CreatePrescriptionItemResponse : BaseResponse
+    public class CreatePatientTreatmentResponse: BaseResponse
     {
-
     }
 }

@@ -1,5 +1,5 @@
-﻿using DentalClinic.ADL.DTOs.Request;
-using DentalClinic.ADL.DTOs.Response;
+﻿using DentalClinic.ADL.DTOs.Request.Create;
+using DentalClinic.ADL.DTOs.Response.Create;
 using DentalClinic.ADL.Models;
 using DentalClinic.ADL.Repository;
 using Mapster;

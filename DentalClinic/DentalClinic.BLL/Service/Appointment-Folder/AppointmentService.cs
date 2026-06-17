@@ -1,5 +1,6 @@
-﻿using DentalClinic.ADL.DTOs.Request;
-using DentalClinic.ADL.DTOs.Response;
+﻿using DentalClinic.ADL.DTOs.Request.Create;
+using DentalClinic.ADL.DTOs.Response.Create;
+using DentalClinic.ADL.DTOs.Response.Get;
 using DentalClinic.ADL.Models;
 using DentalClinic.ADL.Repository;
 using Mapster;
@@ -41,6 +42,27 @@ namespace DentalClinic.BLL.Service.Appointment_Folder
             // check doctor role
             var isDoctore = await _userManager.IsInRoleAsync(doctor, "Doctor");
             if (!isDoctore) { return new CreateAppointmentResponse { Success = false, Message = "selected user is not a doctor" }; }
+            
+            //prevent take appointemt at the past date
+            if(createAppointmentRequest.AppointmentTime< DateTime.UtcNow)
+            {
+                return new CreateAppointmentResponse
+                {
+                    Success = false,
+                    Message = "AppointmentTimeMustBeFuture"
+                     //Message = DateTime.UtcNow.ToString()
+                };
+            }
+
+            //check clinic working houres
+            var clinicStart = new TimeSpan(9, 0, 0);
+            var clinicEnd = new TimeSpan(17, 0, 0);
+            if(createAppointmentRequest.AppointmentTime.TimeOfDay <  clinicStart ||
+                createAppointmentRequest.AppointmentTime.TimeOfDay > clinicEnd)
+            { return new CreateAppointmentResponse { Success = false, Message = "ClinicClosed" }; }
+           
+               
+
             // check appointment time availability
             var isBooked = await _appointmentRepo.ExistsAsync(
                 a => a.DoctorId == createAppointmentRequest.DoctorId &&
@@ -62,6 +84,42 @@ namespace DentalClinic.BLL.Service.Appointment_Folder
             //return
             return new CreateAppointmentResponse { Success = true, Message = " appointment was created successfully" };
 
+        }
+        //get all the appointment for the doctor
+        public async Task<GetAppointmentResponseList> GetAppointmentAsyncForDoctor(string doctorId)
+        {
+            var doctor = await _userManager.FindByIdAsync(doctorId);
+
+            if (doctor == null)
+            {
+                return new GetAppointmentResponseList
+                {
+                    Success = false,
+                    Message = "DoctorNotFound"
+                };
+            }
+
+            var isDoctor = await _userManager.IsInRoleAsync(doctor, "Doctor");
+
+            if (!isDoctor)
+            {
+                return new GetAppointmentResponseList
+                {
+                    Success = false,
+                    Message = "UserIsNotDoctor"
+                };
+            }
+
+            var appointments = await _appointmentRepo.FindAllAsync(
+                a => a.DoctorId == doctorId
+            );
+           
+            return new GetAppointmentResponseList
+            {
+                Success = true,
+                Message = "AppointmentsRetrieved",
+                appointmentResponses = appointments.Adapt<List<GetAppointmentResponse>>()
+            };
         }
     }
 }

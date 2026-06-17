@@ -1,5 +1,5 @@
-﻿using DentalClinic.ADL.DTOs.Request;
-using DentalClinic.ADL.DTOs.Response;
+﻿using DentalClinic.ADL.DTOs.Request.Create;
+using DentalClinic.ADL.DTOs.Response.Create;
 using System;
 using System.Collections.Generic;
 using System.Linq;

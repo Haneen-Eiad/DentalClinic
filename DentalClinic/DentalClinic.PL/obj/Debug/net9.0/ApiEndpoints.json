@@ -1,6 +1,16 @@
 [
   {
     "ContainingType": "DentalClinic.PL.Areas.Admin.AppointmentsController",
+    "Method": "Index",
+    "RelativePath": "api/Appointments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DentalClinic.PL.Areas.Admin.AppointmentsController",
     "Method": "CreateAppointmentAsync",
     "RelativePath": "api/Appointments",
     "HttpMethod": "POST",
@@ -9,7 +19,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "DentalClinic.ADL.DTOs.Request.CreateAppointmentRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.Create.CreateAppointmentRequest",
         "IsRequired": true
       }
     ],
@@ -94,7 +104,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "DentalClinic.ADL.DTOs.Request.CreateEquipmentCategoriesRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.Create.CreateEquipmentCategoriesRequest",
         "IsRequired": true
       }
     ],
@@ -110,7 +120,7 @@
     "Parameters": [
       {
         "Name": "createEquipmentRequest",
-        "Type": "DentalClinic.ADL.DTOs.Request.CreateEquipmentRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.Create.CreateEquipmentRequest",
         "IsRequired": true
       }
     ],
@@ -126,7 +136,7 @@
     "Parameters": [
       {
         "Name": "expenseRequest",
-        "Type": "DentalClinic.ADL.DTOs.Request.CreateExpenseRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.Create.CreateExpenseRequest",
         "IsRequired": true
       }
     ],
@@ -142,7 +152,7 @@
     "Parameters": [
       {
         "Name": "medicineRequest",
-        "Type": "DentalClinic.ADL.DTOs.Request.CreateMedicineRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.Create.CreateMedicineRequest",
         "IsRequired": true
       }
     ],
@@ -158,7 +168,7 @@
     "Parameters": [
       {
         "Name": "patientRequest",
-        "Type": "DentalClinic.ADL.DTOs.Request.CreatePatientRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.Create.CreatePatientRequest",
         "IsRequired": true
       }
     ],
@@ -174,7 +184,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "DentalClinic.ADL.DTOs.Request.CreatePatientTreatmentRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.Create.CreatePatientTreatmentRequest",
         "IsRequired": true
       }
     ],
@@ -190,7 +200,7 @@
     "Parameters": [
       {
         "Name": "prescriptionRequest",
-        "Type": "DentalClinic.ADL.DTOs.Request.CreatePrescriptionRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.Create.CreatePrescriptionRequest",
         "IsRequired": true
       }
     ],
@@ -206,7 +216,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "DentalClinic.ADL.DTOs.Request.CreatePrescriptionItemRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.Create.CreatePrescriptionItemRequest",
         "IsRequired": true
       },
       {
@@ -227,7 +237,7 @@
     "Parameters": [
       {
         "Name": "supplierRequest",
-        "Type": "DentalClinic.ADL.DTOs.Request.CreateSupplierRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.Create.CreateSupplierRequest",
         "IsRequired": true
       }
     ],
@@ -243,7 +253,7 @@
     "Parameters": [
       {
         "Name": "createTreatmentRequest",
-        "Type": "DentalClinic.ADL.DTOs.Request.CreateTreatmentRequest",
+        "Type": "DentalClinic.ADL.DTOs.Request.Create.CreateTreatmentRequest",
         "IsRequired": true
       }
     ],

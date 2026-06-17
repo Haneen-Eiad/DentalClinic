@@ -11,6 +11,7 @@ namespace DentalClinic.ADL.Repository
     {
          Task<T> CreateAsync(T Request);
         Task<T?> FindByIdAsync(object Id);
+        Task<List<T>> FindAllAsync(Expression<Func<T, bool>> predicate);
         Task<bool> ExistsAsync(Expression<Func<T, bool>> Predicate);
        Task<int> SaveChangesAsync();
         int SaveChanges();

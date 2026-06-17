@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace DentalClinic.ADL.DTOs.Request
+namespace DentalClinic.ADL.DTOs.Request.Create
 {
     public class CreatePatientRequest
     {

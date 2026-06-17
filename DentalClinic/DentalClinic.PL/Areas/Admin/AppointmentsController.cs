@@ -1,4 +1,5 @@
-﻿using DentalClinic.ADL.DTOs.Request;
+﻿using System.Security.Claims;
+using DentalClinic.ADL.DTOs.Request.Create;
 using DentalClinic.ADL.DTOs.Response;
 using DentalClinic.BLL.Service.Appointment_Folder;
 using DentalClinic.PL.Resources;
@@ -26,6 +27,20 @@ namespace DentalClinic.PL.Areas.Admin
             _localizer = localizer;
         }
 
+        [HttpGet("")]
+        public async Task<IActionResult> Index()
+        {
+            var currentDoctor = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var response = await _appointmentService.GetAppointmentAsyncForDoctor(currentDoctor);
+
+            if (!response.Success)
+            {
+                return BadRequest(response);
+            }
+
+            return Ok(response);
+        }
         [HttpPost("")]
         public async Task<IActionResult> CreateAppointmentAsync([FromBody] CreateAppointmentRequest request)
         {

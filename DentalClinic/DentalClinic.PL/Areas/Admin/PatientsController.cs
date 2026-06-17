@@ -1,4 +1,4 @@
-﻿using DentalClinic.ADL.DTOs.Request;
+﻿using DentalClinic.ADL.DTOs.Request.Create;
 using DentalClinic.BLL.Service;
 using DentalClinic.BLL.Service.PateintService_Folder;
 using DentalClinic.PL.Resources;

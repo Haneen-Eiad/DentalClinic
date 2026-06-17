@@ -28,6 +28,12 @@ namespace DentalClinic.ADL.Repository
         {
             return await _dbSet.FindAsync(Id);
         }
+      public async Task<List<T>> FindAllAsync(Expression<Func<T,bool>> predicate)
+        {
+            return await _context.Set<T>()
+                .Where(predicate)
+                .ToListAsync();
+        }
         public async Task<bool> ExistsAsync(Expression<Func<T, bool>> Predicate)
         {
             return await _context.Set<T>().AnyAsync(Predicate);

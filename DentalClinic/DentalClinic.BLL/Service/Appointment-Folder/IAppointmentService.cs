@@ -1,5 +1,6 @@
-﻿using DentalClinic.ADL.DTOs.Request;
-using DentalClinic.ADL.DTOs.Response;
+﻿using DentalClinic.ADL.DTOs.Request.Create;
+using DentalClinic.ADL.DTOs.Response.Create;
+using DentalClinic.ADL.DTOs.Response.Get;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace DentalClinic.BLL.Service.Appointment_Folder
     public interface IAppointmentService
     {
         Task<CreateAppointmentResponse> CreateAppointmentAsync(CreateAppointmentRequest createAppointmentRequest);
+        Task<GetAppointmentResponseList> GetAppointmentAsyncForDoctor(string doctorId);
     }
 }
