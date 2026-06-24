@@ -47,6 +47,7 @@ namespace DentalClinic.PL
             services.AddScoped<IPatientTreatmentService, PatientTreatmentService>();
             services.AddScoped<IPrescriptionService, PrescriptionService>();
             services.AddScoped<IAppointmentService, AppointmentService>();
+            services.AddScoped<IAppointmentQueueService, AppointmentQueueService>();
         }
     }
 }

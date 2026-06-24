@@ -53,5 +53,22 @@ namespace DentalClinic.PL.Areas.Admin
             return Ok(new { message = _localizer["AppointmentCreated"].Value, Details = _localizer[response.Message].Value});
 
         }
+
+        [HttpPatch("{id}/status")]
+        public async Task<IActionResult> ChangeStatus(int id,[FromBody] ChangeAppointmentStatusRequest request)
+        {
+            var response = await _appointmentService.ChangeAppointmentStatusAsync( id,request.Status);
+
+            if (!response.Success)
+                return BadRequest(new
+                {
+                    message = response.Message
+                });
+
+            return Ok(new
+            {
+                message = response.Message
+            });
+        }
     }
 }
